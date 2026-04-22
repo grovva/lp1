@@ -1,4 +1,4 @@
-import { Hero } from "@/components/landing/Hero";
+import { HeroV2 } from "@/components/landing/HeroV2";
 import { PainPoints } from "@/components/landing/PainPoints";
 import { Solution } from "@/components/landing/Solution";
 import { Testimonials } from "@/components/landing/Testimonials";
@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <main>
-        <Hero />
+        <HeroV2 />
         <PainPoints />
         <Solution />
         <Testimonials />

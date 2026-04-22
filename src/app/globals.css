@@ -7,16 +7,29 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
-  --color-grovva-green: #56C271;
-  --color-grovva-green-dark: #3da856;
-  --color-grovva-dark: #1B1B1B;
-  --color-grovva-text: #242424;
-  --color-grovva-muted: #424242;
-  --color-grovva-bg: #F9F9F9;
-  --color-grovva-card-bg: #F0F3F5;
+  --font-serif: var(--font-fraunces), "Iowan Old Style", "Palatino", ui-serif, serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+
+  /* Brand */
+  --color-grovva-green: #3EA85C;
+  --color-grovva-green-dark: #2F8447;
+  --color-grovva-green-soft: #EAF3EC;
+
+  /* Surfaces */
+  --color-grovva-bg: #F6F3EE;
+  --color-grovva-paper: #FFFFFF;
+  --color-grovva-card-bg: #FBFAF6;
+  --color-grovva-dark: #0E1611;
+  --color-grovva-ink: #0F1B14;
+
+  /* Text */
+  --color-grovva-text: #141A16;
+  --color-grovva-muted: #5A6460;
+  --color-grovva-subtle: #8A948F;
+  --color-grovva-line: #E4DFD5;
+
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -56,30 +69,30 @@
 }
 
 :root {
-  --background: #F9F9F9;
-  --foreground: #242424;
+  --background: #F6F3EE;
+  --foreground: #141A16;
   --card: #FFFFFF;
-  --card-foreground: #242424;
+  --card-foreground: #141A16;
   --popover: #FFFFFF;
-  --popover-foreground: #242424;
-  --primary: #56C271;
+  --popover-foreground: #141A16;
+  --primary: #3EA85C;
   --primary-foreground: #FFFFFF;
-  --secondary: #F0F3F5;
-  --secondary-foreground: #242424;
-  --muted: #F0F3F5;
-  --muted-foreground: #424242;
-  --accent: #56C271;
+  --secondary: #EAF3EC;
+  --secondary-foreground: #141A16;
+  --muted: #EDE8DD;
+  --muted-foreground: #5A6460;
+  --accent: #3EA85C;
   --accent-foreground: #FFFFFF;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #E5E7EB;
-  --input: #E5E7EB;
-  --ring: #56C271;
+  --border: #E4DFD5;
+  --input: #E4DFD5;
+  --ring: #3EA85C;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
+  --radius: 0.75rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -96,8 +109,107 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv11";
   }
   html {
     @apply font-sans;
   }
+}
+
+/* Editorial serif italic — use for emotional emphasis moments */
+.em-serif {
+  font-family: var(--font-fraunces), "Iowan Old Style", "Palatino", ui-serif, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Small uppercase label used as section eyebrows */
+.eyebrow {
+  font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-grovva-muted);
+}
+
+/* Primary CTA — pill, arrow animates on hover */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.95rem 1.75rem;
+  border-radius: 9999px;
+  background: var(--color-grovva-green);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.04),
+    0 10px 24px -12px rgba(62, 168, 92, 0.5);
+}
+.btn-primary:hover {
+  background: var(--color-grovva-green-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.05),
+    0 18px 30px -14px rgba(62, 168, 92, 0.6);
+}
+.btn-primary .arrow {
+  transition: transform 220ms ease;
+}
+.btn-primary:hover .arrow {
+  transform: translateX(3px);
+}
+
+/* Fully hidden scrollbar — used for mobile carousels */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Soft scrollbar — invisible track, subtle thumb */
+.scrollbar-soft {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(15, 27, 20, 0.18) transparent;
+}
+.scrollbar-soft::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scrollbar-soft::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-soft::-webkit-scrollbar-thumb {
+  background-color: rgba(15, 27, 20, 0.15);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.scrollbar-soft::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(15, 27, 20, 0.28);
+  background-clip: padding-box;
+}
+.scrollbar-soft::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Subtle grain overlay — adds paper feel to hero/solution */
+.grain {
+  position: relative;
+}
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.35;
+  mix-blend-mode: overlay;
 }

@@ -1,21 +1,25 @@
 import type { Metadata } from "next";
-import { Montserrat, Open_Sans } from "next/font/google";
+import { Fraunces, Montserrat } from "next/font/google";
 import "./globals.css";
+import { ContactModal } from "@/components/modal/ContactModal";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
 });
 
-const openSans = Open_Sans({
-  variable: "--font-open-sans",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Grovva - Sistema Agenda Fácil",
+  title: "grovva · vendas para clínicas",
   description:
     "Pare de depender de indicações e comece a ter mais pacientes e mais vendas na sua clínica.",
 };
@@ -28,9 +32,12 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${montserrat.variable} ${openSans.variable} h-full antialiased`}
+      className={`${montserrat.variable} ${fraunces.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-grovva-bg text-grovva-text">
+        {children}
+        <ContactModal />
+      </body>
     </html>
   );
 }
