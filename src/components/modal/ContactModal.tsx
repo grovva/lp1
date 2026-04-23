@@ -84,7 +84,10 @@ function maskName(input: string): string {
 export function ContactModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [values, setValues] = useState<Record<string, string>>({});
-  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const firstFieldRef = useRef<HTMLInputElement>(null);
 
@@ -93,6 +96,7 @@ export function ContactModal() {
     setTimeout(() => {
       setStatus("idle");
       setValues({});
+      setErrorMessage(null);
     }, 300);
   };
 
@@ -136,11 +140,29 @@ export function ContactModal() {
     };
   }, [isOpen]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("submitting");
-    // TODO: wire up to real endpoint
-    setTimeout(() => setStatus("success"), 700);
+    setErrorMessage(null);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      if (!res.ok) {
+        const data = (await res.json().catch(() => ({}))) as {
+          error?: string;
+        };
+        throw new Error(data.error || "Falha no envio");
+      }
+      setStatus("success");
+    } catch (err) {
+      setStatus("error");
+      setErrorMessage(
+        err instanceof Error ? err.message : "Não foi possível enviar",
+      );
+    }
   };
 
   if (!isOpen) return null;
@@ -163,16 +185,16 @@ export function ContactModal() {
       {/* Panel */}
       <div
         ref={panelRef}
-        className="cm-panel scrollbar-soft relative w-full md:max-w-[600px] md:max-h-[88vh] max-h-[85dvh] overflow-y-auto overscroll-contain bg-grovva-bg md:rounded-3xl rounded-t-3xl shadow-[0_-20px_60px_-20px_rgba(0,0,0,0.3),0_40px_80px_-30px_rgba(0,0,0,0.4)]"
+        className="cm-panel scrollbar-soft relative w-full md:max-w-[600px] md:max-h-[88vh] max-h-[85dvh] overflow-y-auto overscroll-contain bg-white md:rounded-3xl rounded-t-3xl shadow-[0_-20px_60px_-20px_rgba(0,0,0,0.3),0_40px_80px_-30px_rgba(0,0,0,0.4)]"
       >
         {/* Header */}
-        <div className="sticky top-0 bg-grovva-bg/95 backdrop-blur-md px-5 md:px-7 py-4 flex items-center justify-between border-b border-grovva-line z-10">
+        <div className="sticky top-0 bg-white/95 backdrop-blur-md px-5 md:px-7 py-4 flex items-center justify-between border-b border-grovva-line z-10">
           <div className="flex items-center gap-3">
             <div className="relative size-9 rounded-full bg-grovva-green flex items-center justify-center">
               <span className="text-white font-heading font-bold text-sm">
                 G
               </span>
-              <span className="absolute -bottom-0.5 -right-0.5 size-3 rounded-full bg-grovva-green-soft border-2 border-grovva-bg" />
+              <span className="absolute -bottom-0.5 -right-0.5 size-3 rounded-full bg-grovva-green-soft border-2 border-white" />
             </div>
             <div>
               <div
@@ -207,96 +229,102 @@ export function ContactModal() {
         {status !== "success" ? (
           <form
             onSubmit={handleSubmit}
-            className="px-5 md:px-7 py-6 md:py-8 flex flex-col gap-6"
+            className="px-5 md:px-7 py-6 md:py-8 flex flex-col gap-5"
           >
-            {/* Opening message */}
-            <ChatBubble>
-              Olá! Forneça suas informações abaixo para nosso time entrar em
-              contato com você.
-            </ChatBubble>
+            <p className="text-[14px] md:text-[15px] text-grovva-muted leading-relaxed -mb-1">
+              Preencha os campos abaixo e nosso time entra em contato com você.
+            </p>
 
             {questions.map((q, idx) => (
-              <div key={q.key} className="flex flex-col gap-2.5">
-                <ChatBubble>
-                  <span>{q.label}</span>
+              <div key={q.key} className="flex flex-col gap-1.5">
+                <label
+                  htmlFor={`cm-${q.key}`}
+                  className="text-[13px] font-medium text-grovva-text"
+                >
+                  {q.label}
                   {q.required && (
                     <span className="text-grovva-green ml-1">*</span>
                   )}
-                </ChatBubble>
+                </label>
 
-                <div className="pl-11">
-                  {q.type === "select" ? (
-                    <select
-                      name={q.key}
-                      required={q.required}
-                      value={values[q.key] || ""}
-                      onChange={(e) =>
-                        setValues({ ...values, [q.key]: e.target.value })
-                      }
-                      className="w-full px-4 py-3 rounded-2xl bg-grovva-paper border border-grovva-line text-[16px] md:text-sm text-grovva-text focus:outline-none focus:ring-2 focus:ring-grovva-green/30 focus:border-grovva-green transition-colors"
-                    >
-                      <option value="">Selecione…</option>
-                      {q.options?.map((opt) => (
-                        <option key={opt} value={opt}>
-                          {opt}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <input
-                      ref={idx === 0 ? firstFieldRef : undefined}
-                      name={q.key}
-                      type={q.type}
-                      required={q.required}
-                      value={values[q.key] || ""}
-                      onChange={(e) => {
-                        const raw = e.target.value;
-                        let next = raw;
-                        if (q.key === "phone") next = maskPhone(raw);
-                        else if (q.key === "instagram") next = maskInstagram(raw);
-                        else if (q.key === "name") next = maskName(raw);
-                        setValues({ ...values, [q.key]: next });
-                      }}
-                      placeholder={q.placeholder}
-                      autoComplete={autoCompleteFor(q.key)}
-                      inputMode={
-                        q.key === "phone"
-                          ? "numeric"
-                          : q.key === "email"
-                          ? "email"
-                          : undefined
-                      }
-                      pattern={
-                        q.key === "phone"
-                          ? "\\(\\d{2}\\) \\d \\d{4}-\\d{4}"
-                          : q.key === "instagram"
-                          ? "@[a-zA-Z0-9._]{1,30}"
-                          : undefined
-                      }
-                      minLength={
-                        q.key === "name"
-                          ? 3
-                          : q.key === "phone"
-                          ? 16
-                          : q.key === "instagram"
-                          ? 2
-                          : undefined
-                      }
-                      title={
-                        q.key === "phone"
-                          ? "Formato: (11) 9 9999-9999"
-                          : q.key === "instagram"
-                          ? "Ex: @suaclinica"
-                          : undefined
-                      }
-                      className="w-full px-4 py-3 rounded-2xl bg-grovva-paper border border-grovva-line text-[16px] md:text-sm text-grovva-text placeholder:text-grovva-subtle focus:outline-none focus:ring-2 focus:ring-grovva-green/30 focus:border-grovva-green transition-colors"
-                    />
-                  )}
-                </div>
+                {q.type === "select" ? (
+                  <select
+                    id={`cm-${q.key}`}
+                    name={q.key}
+                    required={q.required}
+                    value={values[q.key] || ""}
+                    onChange={(e) =>
+                      setValues({ ...values, [q.key]: e.target.value })
+                    }
+                    className="w-full px-4 py-3 rounded-2xl bg-grovva-paper border border-grovva-line text-[16px] md:text-sm text-grovva-text focus:outline-none focus:ring-2 focus:ring-grovva-green/30 focus:border-grovva-green transition-colors"
+                  >
+                    <option value="">Selecione…</option>
+                    {q.options?.map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <input
+                    id={`cm-${q.key}`}
+                    ref={idx === 0 ? firstFieldRef : undefined}
+                    name={q.key}
+                    type={q.type}
+                    required={q.required}
+                    value={values[q.key] || ""}
+                    onChange={(e) => {
+                      const raw = e.target.value;
+                      let next = raw;
+                      if (q.key === "phone") next = maskPhone(raw);
+                      else if (q.key === "instagram") next = maskInstagram(raw);
+                      else if (q.key === "name") next = maskName(raw);
+                      setValues({ ...values, [q.key]: next });
+                    }}
+                    placeholder={q.placeholder}
+                    autoComplete={autoCompleteFor(q.key)}
+                    inputMode={
+                      q.key === "phone"
+                        ? "numeric"
+                        : q.key === "email"
+                        ? "email"
+                        : undefined
+                    }
+                    pattern={
+                      q.key === "phone"
+                        ? "\\(\\d{2}\\) \\d \\d{4}-\\d{4}"
+                        : q.key === "instagram"
+                        ? "@[a-zA-Z0-9._]{1,30}"
+                        : undefined
+                    }
+                    minLength={
+                      q.key === "name"
+                        ? 3
+                        : q.key === "phone"
+                        ? 16
+                        : q.key === "instagram"
+                        ? 2
+                        : undefined
+                    }
+                    title={
+                      q.key === "phone"
+                        ? "Formato: (11) 9 9999-9999"
+                        : q.key === "instagram"
+                        ? "Ex: @suaclinica"
+                        : undefined
+                    }
+                    className="w-full px-4 py-3 rounded-2xl bg-grovva-paper border border-grovva-line text-[16px] md:text-sm text-grovva-text placeholder:text-grovva-subtle focus:outline-none focus:ring-2 focus:ring-grovva-green/30 focus:border-grovva-green transition-colors"
+                  />
+                )}
               </div>
             ))}
 
-            <div className="sticky bottom-0 -mx-5 md:-mx-7 px-5 md:px-7 pt-4 pb-5 bg-gradient-to-t from-grovva-bg via-grovva-bg to-grovva-bg/0">
+            <div className="sticky bottom-0 -mx-5 md:-mx-7 px-5 md:px-7 pt-4 pb-5 bg-gradient-to-t from-white via-white to-white/0 mt-2">
+              {status === "error" && errorMessage && (
+                <div className="mb-3 px-4 py-2.5 rounded-xl bg-red-50 border border-red-200 text-[13px] text-red-700">
+                  {errorMessage}. Tente novamente em alguns segundos.
+                </div>
+              )}
               <button
                 type="submit"
                 disabled={status === "submitting"}
@@ -373,18 +401,10 @@ export function ContactModal() {
               .
             </p>
 
-            {/* Grovva reply bubble */}
-            <div className="w-full max-w-[440px] mt-8">
-              <ChatBubble>
-                Enquanto isso, fica de olho no seu WhatsApp — a gente costuma
-                retornar no mesmo dia. 👋
-              </ChatBubble>
-            </div>
-
             <button
               type="button"
               onClick={close}
-              className="btn-primary mt-10 cursor-pointer"
+              className="btn-primary mt-8 cursor-pointer"
             >
               Fechar
             </button>
@@ -459,23 +479,6 @@ export function ContactModal() {
           }
         }
       `}</style>
-    </div>
-  );
-}
-
-function ChatBubble({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex items-start gap-3">
-      <div className="relative size-8 shrink-0 rounded-full bg-grovva-green/15 border border-grovva-green/25 flex items-center justify-center mt-0.5">
-        <span className="text-grovva-green-dark font-heading font-bold text-[11px]">
-          G
-        </span>
-      </div>
-      <div className="bg-grovva-paper rounded-2xl rounded-tl-md px-4 py-3 max-w-[85%] border border-grovva-line/70 shadow-[0_2px_4px_rgba(15,27,20,0.03)]">
-        <p className="text-[14px] md:text-[14.5px] text-grovva-text leading-relaxed">
-          {children}
-        </p>
-      </div>
     </div>
   );
 }
