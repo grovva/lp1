@@ -19,9 +19,9 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "grovva · vendas para clínicas",
+  title: "Marketing e Tecnologia Sob Medida para Clínicas | grovva",
   description:
-    "Pare de depender de indicações e comece a ter mais pacientes e mais vendas na sua clínica.",
+    "Marketing, vendas e atendimento com agentes de IA sob medida para sua clínica atrair pacientes, aumentar o faturamento e crescer sem depender de indicação.",
 };
 
 export default function RootLayout({

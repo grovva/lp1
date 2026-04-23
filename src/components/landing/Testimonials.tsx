@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useRef } from "react";
 import { Reveal } from "@/components/motion/Reveal";
 
 const testimonials = [
@@ -36,6 +39,16 @@ function StarRating() {
 }
 
 export function Testimonials() {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+
+  const scrollBy = (dir: 1 | -1) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("figure");
+    const step = card ? card.getBoundingClientRect().width + 16 : el.clientWidth * 0.85;
+    el.scrollBy({ left: step * dir, behavior: "smooth" });
+  };
+
   return (
     <section className="py-14 md:py-32 bg-white">
       <div className="container mx-auto px-6 max-w-[1200px]">
@@ -54,7 +67,10 @@ export function Testimonials() {
         </Reveal>
 
         {/* Cards — horizontal carousel on mobile, grid on desktop */}
-        <div className="md:grid md:grid-cols-3 md:gap-6 flex gap-4 md:overflow-visible overflow-x-auto snap-x snap-mandatory scrollbar-none -mx-6 md:mx-0 px-6 md:px-0 pb-2 md:pb-0">
+        <div
+          ref={scrollerRef}
+          className="md:grid md:grid-cols-3 md:gap-6 flex gap-4 md:overflow-visible overflow-x-auto snap-x snap-mandatory scrollbar-none -mx-6 md:mx-0 px-6 md:px-0 pb-2 md:pb-0"
+        >
           {testimonials.map((t) => (
             <figure
               key={t.name}
@@ -97,6 +113,46 @@ export function Testimonials() {
 
             </figure>
           ))}
+        </div>
+
+        {/* Mobile-only carousel nav */}
+        <div className="md:hidden flex items-center justify-center gap-4 mt-5">
+          <button
+            type="button"
+            onClick={() => scrollBy(-1)}
+            aria-label="Depoimento anterior"
+            className="size-10 rounded-full border border-grovva-line flex items-center justify-center text-grovva-text bg-white hover:bg-grovva-green hover:text-white hover:border-grovva-green transition-colors cursor-pointer"
+          >
+            <svg
+              className="size-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollBy(1)}
+            aria-label="Próximo depoimento"
+            className="size-10 rounded-full border border-grovva-line flex items-center justify-center text-grovva-text bg-white hover:bg-grovva-green hover:text-white hover:border-grovva-green transition-colors cursor-pointer"
+          >
+            <svg
+              className="size-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M9 6l6 6-6 6" />
+            </svg>
+          </button>
         </div>
 
         {/* Final CTA */}
