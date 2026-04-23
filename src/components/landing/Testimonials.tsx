@@ -46,7 +46,16 @@ export function Testimonials() {
     if (!el) return;
     const card = el.querySelector<HTMLElement>("figure");
     const step = card ? card.getBoundingClientRect().width + 16 : el.clientWidth * 0.85;
-    el.scrollBy({ left: step * dir, behavior: "smooth" });
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    const current = el.scrollLeft;
+    let target = current + step * dir;
+
+    // Loop: if going past end, go back to start; if before start, jump to end
+    if (dir === 1 && current >= maxScroll - 8) target = 0;
+    else if (dir === -1 && current <= 8) target = maxScroll;
+    else target = Math.max(0, Math.min(maxScroll, target));
+
+    el.scrollTo({ left: target, behavior: "smooth" });
   };
 
   return (

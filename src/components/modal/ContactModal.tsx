@@ -185,7 +185,7 @@ export function ContactModal() {
       {/* Panel */}
       <div
         ref={panelRef}
-        className="cm-panel scrollbar-soft relative w-full md:max-w-[600px] md:max-h-[88vh] max-h-[85dvh] overflow-y-auto overscroll-contain bg-white md:rounded-3xl rounded-t-3xl shadow-[0_-20px_60px_-20px_rgba(0,0,0,0.3),0_40px_80px_-30px_rgba(0,0,0,0.4)]"
+        className="cm-panel scrollbar-soft relative w-full md:max-w-[600px] md:max-h-[88vh] h-[100dvh] md:h-auto overflow-y-auto overscroll-contain bg-white md:rounded-3xl shadow-[0_-20px_60px_-20px_rgba(0,0,0,0.3),0_40px_80px_-30px_rgba(0,0,0,0.4)]"
       >
         {/* Header */}
         <div className="sticky top-0 bg-white/95 backdrop-blur-md px-5 md:px-7 py-4 flex items-center justify-between border-b border-grovva-line z-10">
