@@ -78,11 +78,14 @@ async function sendLeadToTrackFlow(
     revenue: string;
   },
 ) {
-  const pixelId = process.env.TRACKFLOW_PIXEL_ID;
+  const pixelId =
+    process.env.NEXT_PUBLIC_TRACKFLOW_PIXEL_ID || process.env.TRACKFLOW_PIXEL_ID;
   if (!pixelId) return;
 
   const baseUrl =
-    process.env.TRACKFLOW_BASE_URL || "https://trackflow.grovva.com.br";
+    process.env.NEXT_PUBLIC_TRACKFLOW_BASE_URL ||
+    process.env.TRACKFLOW_BASE_URL ||
+    "https://trackflow.grovva.com.br";
 
   const cookies = req.headers.get("cookie") || "";
   const fbp = cookies.match(/(?:^|;\s*)_fbp=([^;]+)/)?.[1];
