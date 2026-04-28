@@ -34,7 +34,7 @@ export function Footer() {
           {/* Social icons */}
           <div className="flex items-center gap-3">
             <Link
-              href="https://www.instagram.com/grovva.co/"
+              href="https://www.instagram.com/grovvacompany/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
