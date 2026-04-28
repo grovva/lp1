@@ -71,15 +71,16 @@ function maskPhone(input: string): string {
   return `(${digits.slice(0, 2)}) ${digits.slice(2, 3)} ${digits.slice(3, 7)}-${digits.slice(7)}`;
 }
 
-// Mask: @handle — ensures @ prefix, lowercase, no spaces
+// Mask: lowercase handle, no spaces; @ é opcional e preservado se o usuario digitar
 function maskInstagram(input: string): string {
-  const clean = input
+  const startsWithAt = input.trimStart().startsWith("@");
+  const body = input
     .replace(/^@+/, "")
     .replace(/\s+/g, "")
     .replace(/[^a-zA-Z0-9._]/g, "")
     .toLowerCase()
     .slice(0, 30);
-  return clean ? `@${clean}` : "";
+  return startsWithAt && body ? `@${body}` : body;
 }
 
 // Name: only letters, spaces and common accented chars
@@ -299,7 +300,7 @@ export function ContactModal() {
                       q.key === "phone"
                         ? "\\(\\d{2}\\) \\d \\d{4}-\\d{4}"
                         : q.key === "instagram"
-                        ? "@[a-zA-Z0-9._]{1,30}"
+                        ? "@?[a-zA-Z0-9._]{2,30}"
                         : undefined
                     }
                     minLength={
