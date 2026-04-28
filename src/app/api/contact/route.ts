@@ -56,6 +56,8 @@ export async function POST(req: Request) {
       throw new Error(`Upstream ${res.status}`);
     }
 
+    await sendLeadToTrackFlow(req, { name, email, phone, instagram, revenue });
+
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("Contact API error:", err);
@@ -63,5 +65,63 @@ export async function POST(req: Request) {
       { error: "Falha no envio" },
       { status: 502 },
     );
+  }
+}
+
+async function sendLeadToTrackFlow(
+  req: Request,
+  data: {
+    name: string;
+    email: string;
+    phone: string;
+    instagram: string;
+    revenue: string;
+  },
+) {
+  const pixelId = process.env.TRACKFLOW_PIXEL_ID;
+  if (!pixelId) return;
+
+  const baseUrl =
+    process.env.TRACKFLOW_BASE_URL || "https://trackflow.grovva.com.br";
+
+  const cookies = req.headers.get("cookie") || "";
+  const fbp = cookies.match(/(?:^|;\s*)_fbp=([^;]+)/)?.[1];
+  const fbc = cookies.match(/(?:^|;\s*)_fbc=([^;]+)/)?.[1];
+
+  const forwardedFor = req.headers.get("x-forwarded-for") || "";
+  const ip = forwardedFor.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "";
+  const ua = req.headers.get("user-agent") || "";
+
+  const [firstName, ...rest] = data.name.trim().split(/\s+/);
+  const lastName = rest.join(" ");
+
+  try {
+    await fetch(`${baseUrl}/api/events/track`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        event_name: "Lead",
+        pixel_id: pixelId,
+        source_url: req.headers.get("referer") || undefined,
+        action_source: "website",
+        user_data: {
+          email: data.email,
+          phone: data.phone,
+          first_name: firstName,
+          last_name: lastName || undefined,
+          client_ip_address: ip || undefined,
+          client_user_agent: ua,
+          fbp,
+          fbc,
+        },
+        custom_data: {
+          content_name: "LP Grovva",
+          instagram: data.instagram,
+          revenue: data.revenue,
+        },
+      }),
+    });
+  } catch (err) {
+    console.error("TrackFlow Lead error:", err);
   }
 }
