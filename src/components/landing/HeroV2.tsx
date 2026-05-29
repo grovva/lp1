@@ -1,15 +1,22 @@
 import Image from "next/image";
 import { Reveal } from "@/components/motion/Reveal";
+import { Typewriter } from "@/components/motion/Typewriter";
+import { BrandsCarousel } from "@/components/landing/BrandsCarousel";
+import { FloatingCards } from "@/components/landing/FloatingCards";
 
-const preHeadlineBullets = [
-  "+4000 pacientes gerados",
-  "+ Controle do seu faturamento",
-  "+ Controle da sua agenda",
+const rotatingBullets = [
+  "+ de 4M gerenciados em anúncios",
+  "Clientes em 6 países",
+  "+ de 40M de receita gerada para nossos clientes",
 ];
+
+const brandLogos = [1, 2, 3, 4, 5, 7, 8, 9, 10].map(
+  (n) => `/images/brands/${n}.png`
+);
 
 const chipBullets: { icon: React.ReactNode; label: string }[] = [
   {
-    label: "Estratégia sob medida para a sua clínica",
+    label: "Aumente seu faturamento",
     icon: (
       <svg
         className="size-4"
@@ -20,12 +27,31 @@ const chipBullets: { icon: React.ReactNode; label: string }[] = [
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <path d="M12 2l2.39 4.84 5.34.78-3.87 3.77.91 5.32L12 14.2l-4.77 2.51.91-5.32L4.27 7.62l5.34-.78L12 2z" />
+        <circle cx="12" cy="12" r="10" />
+        <path d="M16 8h-5a2.5 2.5 0 0 0 0 5h2a2.5 2.5 0 0 1 0 5H8" />
+        <path d="M12 6v12" />
       </svg>
     ),
   },
   {
-    label: "Aumente seu faturamento recorrente",
+    label: "Converta mais clientes",
+    icon: (
+      <svg
+        className="size-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+      </svg>
+    ),
+  },
+  {
+    label: "Cresça com previsibilidade",
     icon: (
       <svg
         className="size-4"
@@ -64,7 +90,10 @@ export function HeroV2() {
         }}
       />
 
-      <div className="relative container mx-auto px-6 max-w-[1200px] pt-8 pb-20 md:pt-12 md:pb-32 text-center">
+      <div className="relative">
+        <FloatingCards />
+
+        <div className="container mx-auto px-6 max-w-[1200px] pt-8 md:pt-12 text-center">
         {/* Logo */}
         <Reveal delay={0.05}>
           <Image
@@ -72,65 +101,50 @@ export function HeroV2() {
             alt="Grovva"
             width={500}
             height={500}
-            className="w-[120px] md:w-[140px] h-auto object-contain mx-auto mb-5 md:mb-14"
+            className="w-[120px] md:w-[140px] h-auto object-contain mx-auto mb-6 md:mb-12"
             priority
           />
         </Reveal>
 
-        {/* Pré-headline chips */}
-        <div className="mb-6 md:mb-10 grid grid-cols-2 gap-1.5 max-w-[360px] mx-auto md:flex md:flex-wrap md:items-center md:justify-center md:gap-2.5 md:max-w-none">
-          {preHeadlineBullets.map((b, i) => (
-            <Reveal
-              key={b}
-              delay={0.15 + i * 0.06}
-              y={10}
-              className={`flex justify-center ${i === 2 ? "col-span-2 md:col-span-1" : ""}`}
+        {/* Top pill — typewriter */}
+        <Reveal delay={0.15}>
+          <div className="mb-6 md:mb-10 flex justify-center">
+            <span
+              className="inline-flex items-center gap-2.5 rounded-full border border-grovva-green/70 bg-grovva-green/[0.18] px-3.5 py-1.5 md:px-4 md:py-2 text-[12px] md:text-[14px] text-grovva-green font-medium"
+              style={{
+                boxShadow:
+                  "0 0 0 1px rgba(62,168,92,0.15), 0 8px 24px -8px rgba(62,168,92,0.45)",
+              }}
             >
-              <span className="inline-flex items-center gap-1.5 md:gap-2 rounded-full border border-grovva-green/40 bg-grovva-green/[0.08] px-2 py-1 md:px-3.5 md:py-1.5 text-[10px] md:text-[13px] text-grovva-green font-medium whitespace-nowrap">
-                <span className="size-1 md:size-1.5 rounded-full bg-grovva-green" />
-                {b}
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex size-full animate-ping rounded-full bg-grovva-green opacity-75" />
+                <span className="relative inline-flex size-2 rounded-full bg-grovva-green" />
               </span>
-            </Reveal>
-          ))}
-        </div>
+              <Typewriter words={rotatingBullets} />
+            </span>
+          </div>
+        </Reveal>
 
         {/* Headline */}
-        <Reveal delay={0.35}>
-          <h1 className="font-heading font-bold text-[28px] sm:text-[34px] md:text-[44px] lg:text-[52px] leading-[1.05] tracking-[-0.025em] text-balance max-w-[780px] mx-auto">
-            <span className="text-white">
-              Pare de depender de indicações e comece a ter
-            </span>{" "}
-            <span className="text-grovva-green">
-              mais pacientes e mais vendas na sua clínica
-            </span>
+        <Reveal delay={0.3}>
+          <h1 className="font-heading font-bold text-[30px] sm:text-[38px] md:text-[52px] lg:text-[60px] leading-[1.05] tracking-[-0.025em] text-balance max-w-[900px] mx-auto">
+            <span className="text-white">Mais leads qualificados, mais vendas e mais </span>
+            <span className="text-grovva-green">controle do crescimento do seu negócio.</span>
           </h1>
         </Reveal>
 
         {/* Subheadline */}
-        <Reveal delay={0.5}>
-          <p className="mt-8 md:mt-10 text-white/65 text-base md:text-[17px] leading-relaxed max-w-[680px] mx-auto">
-            Cadastre-se e descubra como um sistema sob medida pode ajudar
-            sua clínica a atrair novos pacientes e aumentar seus atendimentos.
+        <Reveal delay={0.45}>
+          <p className="mt-6 md:mt-8 text-white/65 text-base md:text-[17px] leading-relaxed max-w-[720px] mx-auto">
+            Implementamos um sistema validado no seu negócio, que além de atrair
+            leads decididos a comprar, também ajuda o seu time a fechar mais
+            vendas.
           </p>
         </Reveal>
 
-        {/* Chip bullets */}
-        <div className="mt-6 md:mt-10 grid grid-cols-2 md:flex md:flex-wrap md:items-center md:justify-center gap-2 md:gap-4 max-w-[420px] md:max-w-none mx-auto">
-          {chipBullets.map((c, i) => (
-            <Reveal key={c.label} delay={0.6 + i * 0.08} y={10}>
-              <div className="flex items-center gap-1.5 md:gap-2.5 rounded-full border border-white/10 bg-white/[0.04] pl-1.5 pr-3 py-1 md:pl-2 md:pr-4 md:py-2 text-[10px] md:text-[14px] text-white/85 leading-tight text-left">
-                <span className="size-5 md:size-7 shrink-0 rounded-full bg-grovva-green/20 text-grovva-green flex items-center justify-center [&>svg]:size-3 md:[&>svg]:size-4">
-                  {c.icon}
-                </span>
-                {c.label}
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
         {/* CTA */}
-        <Reveal delay={0.8}>
-          <div className="mt-10 md:mt-12 flex justify-center">
+        <Reveal delay={0.6}>
+          <div className="mt-8 md:mt-10 flex justify-center">
             <button
               type="button"
               data-contact-cta="true"
@@ -156,7 +170,33 @@ export function HeroV2() {
             </button>
           </div>
         </Reveal>
+
+        {/* Chip bullets */}
+        <div className="mt-10 md:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-2 md:flex md:flex-wrap md:items-center md:justify-center md:gap-3 max-w-[420px] sm:max-w-[640px] md:max-w-none mx-auto">
+          {chipBullets.map((c, i) => (
+            <Reveal key={c.label} delay={0.7 + i * 0.08} y={10}>
+              <div className="flex items-center justify-center md:justify-start gap-2 md:gap-2.5 rounded-full border border-white/10 bg-white/[0.04] pl-2 pr-3 py-1.5 md:pl-2 md:pr-4 md:py-2 text-[12px] md:text-[14px] text-white/85 leading-tight">
+                <span className="size-6 md:size-7 shrink-0 rounded-full bg-grovva-green/20 text-grovva-green flex items-center justify-center [&>svg]:size-3.5 md:[&>svg]:size-4">
+                  {c.icon}
+                </span>
+                {c.label}
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        </div>
       </div>
+
+      {/* Brands strip — full-width auto-scrolling marquee in monochrome green */}
+      <Reveal delay={1}>
+        <div className="relative mt-16 md:mt-24 pb-20 md:pb-28">
+          <p className="text-[11px] md:text-[12px] uppercase tracking-[0.18em] text-white/45 mb-6 text-center px-6">
+            Grandes marcas que já utilizaram nossas estratégias
+          </p>
+          <BrandsCarousel logos={brandLogos} />
+        </div>
+      </Reveal>
     </section>
   );
 }

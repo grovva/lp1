@@ -200,6 +200,17 @@
   background: transparent;
 }
 
+/* Monochrome logo via alpha mask — tints any transparent PNG to a flat color */
+.brand-mask {
+  background-color: #D1D5DB;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
 /* Subtle grain overlay — adds paper feel to hero/solution */
 .grain {
   position: relative;
