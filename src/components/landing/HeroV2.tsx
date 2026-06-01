@@ -127,7 +127,7 @@ export function HeroV2() {
 
         {/* Headline */}
         <Reveal delay={0.3}>
-          <h1 className="font-heading font-bold text-[30px] sm:text-[38px] md:text-[52px] lg:text-[60px] leading-[1.05] tracking-[-0.025em] text-balance max-w-[900px] mx-auto">
+          <h1 className="font-heading font-bold text-[26px] sm:text-[34px] md:text-[52px] lg:text-[60px] leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] sm:tracking-[-0.025em] text-balance max-w-[900px] mx-auto">
             <span className="text-white">Mais leads qualificados, mais vendas e mais </span>
             <span className="text-grovva-green">controle do crescimento do seu negócio.</span>
           </h1>
@@ -189,7 +189,7 @@ export function HeroV2() {
       </div>
 
       {/* Brands strip — full-width auto-scrolling marquee in monochrome green */}
-      <Reveal delay={1}>
+      <Reveal delay={0.15}>
         <div className="relative mt-16 md:mt-24 pb-20 md:pb-28">
           <p className="text-[11px] md:text-[12px] uppercase tracking-[0.18em] text-white/45 mb-6 text-center px-6">
             Grandes marcas que já utilizaram nossas estratégias

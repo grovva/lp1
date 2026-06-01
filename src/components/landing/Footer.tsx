@@ -28,13 +28,13 @@ export function Footer() {
 
           {/* Tagline */}
           <p className="text-white/55 text-sm md:text-base -mt-4 text-center max-w-[420px]">
-            Vendas para clínicas que querem crescer de verdade.
+            Marketing e vendas para negócios que querem crescer de verdade.
           </p>
 
           {/* Social icons */}
           <div className="flex items-center gap-3">
             <Link
-              href="https://www.instagram.com/grovvacompany/"
+              href="https://www.instagram.com/grovva.co/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"

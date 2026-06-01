@@ -1,4 +1,4 @@
-import { Fragment, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { Reveal } from "@/components/motion/Reveal";
 
 type Step = {
@@ -11,10 +11,10 @@ type Step = {
 
 const steps: Step[] = [
   {
-    number: "ETAPA 001",
+    number: "001",
     title: "Geração de Demanda",
     description:
-      "Criamos campanhas que atraem leads com perfil e intenção de compra, para o seu time receber apenas quem já está pronto para conversar.",
+      "Criamos campanhas que atraem leads com perfil e intenção real de compra, chega de curiosos pedindo preço e sumindo, assim seu time recebe apenas quem já está pronto para conversar e fechar negócio.",
     funnel: "TOPO DO FUNIL",
     icon: (
       <svg
@@ -26,14 +26,12 @@ const steps: Step[] = [
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <circle cx="12" cy="12" r="10" />
-        <circle cx="12" cy="12" r="6" />
-        <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none" />
+        <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" />
       </svg>
     ),
   },
   {
-    number: "ETAPA 002",
+    number: "002",
     title: "Força de Vendas",
     description:
       "Estruturamos o processo comercial completo: CRM configurado, atendimento com IA e treinamento do time para que nenhuma oportunidade seja perdida por falta de processo ou demora na resposta.",
@@ -53,7 +51,7 @@ const steps: Step[] = [
     ),
   },
   {
-    number: "ETAPA 003",
+    number: "003",
     title: "Inteligência de Crescimento",
     description:
       "Construímos um dashboard exclusivo onde cada número conta a história real do seu negócio. Nada de relatório genérico, acompanhamos os dados juntos e tomamos as decisões certas no momento certo para garantir que o crescimento continue acontecendo.",
@@ -92,6 +90,23 @@ function CheckIcon() {
   );
 }
 
+function MoneyIcon() {
+  return (
+    <svg
+      className="size-3.5"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="12" y1="2" x2="12" y2="22" />
+      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+    </svg>
+  );
+}
+
 function ArrowRight({ className = "" }: { className?: string }) {
   return (
     <svg
@@ -112,12 +127,10 @@ function ArrowRight({ className = "" }: { className?: string }) {
 export function SalesSystem() {
   return (
     <section
-      className="relative overflow-hidden bg-grovva-dark text-white py-20 md:py-32"
+      className="relative overflow-hidden text-white py-20 md:py-32"
       style={{
-        backgroundImage:
-          "radial-gradient(800px 500px at 80% 0%, rgba(62,168,92,0.18), transparent 60%), radial-gradient(700px 400px at 0% 100%, rgba(62,168,92,0.12), transparent 60%), radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)",
-        backgroundSize: "auto, auto, 22px 22px",
-        backgroundPosition: "center, center, 0 0",
+        background:
+          "radial-gradient(900px 600px at 50% 0%, rgba(20, 84, 91, 0.55), transparent 70%), linear-gradient(180deg, #0a1814 0%, #060d0a 100%)",
       }}
     >
       {/* Top hairline */}
@@ -127,16 +140,11 @@ export function SalesSystem() {
         {/* Header */}
         <div className="text-center max-w-[900px] mx-auto">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-grovva-green/40 bg-grovva-green/[0.1] px-3.5 py-1.5 text-[12px] font-semibold uppercase tracking-[0.18em] text-grovva-green">
-              <span className="size-1.5 rounded-full bg-grovva-green" />
-              Sistema
-            </span>
-          </Reveal>
-
-          <Reveal delay={0.08}>
-            <h2 className="mt-6 font-heading font-bold text-[32px] md:text-[44px] lg:text-[52px] leading-[1.05] tracking-[-0.025em] text-balance">
-              Seu negócio pode gerar e converter mais leads com o sistema{" "}
-              <span className="text-grovva-green">Grovva Sales</span>
+            <h2 className="font-heading font-bold text-[32px] md:text-[44px] lg:text-[52px] leading-[1.05] tracking-[-0.025em] text-balance">
+              É assim que negócios escalam{" "}
+              <span className="text-grovva-green">
+                sem depender de sorte ou indicação
+              </span>
             </h2>
           </Reveal>
 
@@ -152,17 +160,17 @@ export function SalesSystem() {
           <Reveal delay={0.24}>
             <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5">
               {[
-                "+R$40M em faturamento gerado",
-                "Já validado por outros empresários",
+                { label: "+R$40M em faturamento gerado", icon: <MoneyIcon /> },
+                { label: "Já validado por outros empresários", icon: <CheckIcon /> },
               ].map((chip) => (
                 <span
-                  key={chip}
+                  key={chip.label}
                   className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-[12px] md:text-[13px] text-white/85"
                 >
                   <span className="flex size-5 items-center justify-center rounded-full bg-grovva-green/20 text-grovva-green">
-                    <CheckIcon />
+                    {chip.icon}
                   </span>
-                  {chip}
+                  {chip.label}
                 </span>
               ))}
             </div>
@@ -175,89 +183,75 @@ export function SalesSystem() {
           </Reveal>
         </div>
 
-        {/* Steps grid — cards conectados por line + pulsing dot nos gaps */}
-        <div className="mt-10 md:mt-12 grid grid-cols-1 gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:gap-0 md:items-stretch">
+        {/* Steps grid — glass cards com numeral watermark suave */}
+        <div className="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
           {steps.map((step, i) => (
-            <Fragment key={step.number}>
-              <Reveal delay={0.4 + i * 0.16}>
-                <article
-                  className="group h-full flex flex-col rounded-2xl border border-white/8 bg-white/[0.03] p-7 md:p-8 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-white/[0.05] hover:border-grovva-green/30"
-                  style={{
-                    boxShadow:
-                      "0 1px 0 0 rgba(255,255,255,0.04) inset, 0 30px 60px -30px rgba(0,0,0,0.5)",
-                  }}
-                >
-                  <div className="flex size-11 items-center justify-center rounded-xl bg-grovva-green/15 text-grovva-green">
+            <Reveal key={step.number} delay={0.4 + i * 0.12} className="group h-full">
+              <article
+                className="relative h-full flex flex-col rounded-2xl overflow-hidden p-7 md:p-8 transition-all duration-300 ease-out group-hover:-translate-y-1"
+                style={{
+                  background:
+                    "linear-gradient(165deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  backdropFilter: "blur(20px)",
+                  WebkitBackdropFilter: "blur(20px)",
+                }}
+              >
+                <div className="relative">
+                  <div className="flex size-11 items-center justify-center rounded-xl bg-grovva-green/20 text-grovva-green">
                     {step.icon}
                   </div>
 
-                  <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/45">
-                    {step.number}
+                  <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-grovva-green">
+                    Etapa {step.number}
                   </p>
 
-                  <h3 className="mt-2 font-heading font-semibold text-white text-[17px] md:text-[19px] leading-[1.2] tracking-[-0.01em]">
+                  <h3 className="mt-1.5 font-heading font-semibold text-white text-[18px] md:text-[20px] leading-[1.2] tracking-[-0.01em]">
                     {step.title}
                   </h3>
 
                   <p className="mt-3 text-[14px] md:text-[15px] text-white/65 leading-relaxed">
                     {step.description}
                   </p>
-
-                  <div className="mt-auto pt-6">
-                    <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-grovva-green">
-                      <ArrowRight className="size-3.5" />
-                      {step.funnel}
-                    </span>
-                  </div>
-                </article>
-              </Reveal>
-
-              {/* Connector entre cards (não renderizado depois do último) */}
-              {i < steps.length - 1 && (
-                <div
-                  aria-hidden="true"
-                  className="hidden md:flex w-8 lg:w-10 items-center self-center px-1"
-                >
-                  <div className="h-px flex-1 bg-gradient-to-r from-transparent to-grovva-green/50" />
-                  <span className="relative mx-2 flex size-2.5">
-                    <span className="absolute inline-flex size-full animate-ping rounded-full bg-grovva-green opacity-75" />
-                    <span className="relative inline-flex size-2.5 rounded-full bg-grovva-green shadow-[0_0_12px_rgba(62,168,92,0.6)]" />
-                  </span>
-                  <div className="h-px flex-1 bg-gradient-to-l from-transparent to-grovva-green/50" />
                 </div>
-              )}
-            </Fragment>
+
+                <div className="mt-auto pt-6 relative">
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-grovva-green">
+                    <ArrowRight className="size-3.5" />
+                    {step.funnel}
+                  </span>
+                </div>
+              </article>
+            </Reveal>
           ))}
         </div>
 
         {/* CTA */}
-        <Reveal delay={0.7}>
-          <div className="mt-12 md:mt-16 flex justify-center">
-            <button
-              type="button"
-              data-contact-cta="true"
-              className="btn-primary"
-              style={{
-                boxShadow:
-                  "0 0 0 1px rgba(62,168,92,0.25), 0 18px 40px -10px rgba(62,168,92,0.55)",
-              }}
+        <div className="mt-12 md:mt-16 flex justify-center">
+          <button
+            type="button"
+            data-contact-cta="true"
+            className="btn-primary"
+            style={{
+              boxShadow:
+                "0 0 0 1px rgba(62,168,92,0.25), 0 18px 40px -10px rgba(62,168,92,0.55)",
+            }}
+          >
+            Quero saber mais
+            <svg
+              className="arrow size-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              Quero saber mais
-              <svg
-                className="arrow size-4"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M5 12h14" />
-                <path d="m13 5 7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        </Reveal>
+              <path d="M5 12h14" />
+              <path d="m13 5 7 7-7 7" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       {/* Bottom hairline */}

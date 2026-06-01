@@ -73,7 +73,7 @@ export function BrandsCarousel({ logos }: BrandsCarouselProps) {
       />
       <div
         ref={trackRef}
-        className="flex w-max items-center gap-10 md:gap-16 will-change-transform"
+        className="flex w-max items-center gap-0 md:gap-16 will-change-transform"
       >
         {[...logos, ...logos].map((src, i) => (
           <div

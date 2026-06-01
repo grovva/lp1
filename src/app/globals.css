@@ -108,7 +108,10 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    /* Cor pré-tintada já com o glow verde do topo do hero baked in,
+       pra casar com o themeColor do iOS sem mostrar linha entre status bar e hero */
+    background-color: #121F18;
     font-feature-settings: "ss01", "cv11";
   }
   html {

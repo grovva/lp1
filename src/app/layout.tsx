@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Fraunces, Montserrat } from "next/font/google";
 import "./globals.css";
@@ -29,6 +29,10 @@ export const metadata: Metadata = {
     "Marketing, vendas e atendimento com agentes de IA sob medida para sua clínica atrair pacientes, aumentar o faturamento e crescer sem depender de indicação.",
 };
 
+export const viewport: Viewport = {
+  themeColor: "#121F18",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -39,7 +43,7 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${montserrat.variable} ${fraunces.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-grovva-bg text-grovva-text">
+      <body className="min-h-full flex flex-col bg-grovva-dark text-grovva-text">
         {TRACKFLOW_PIXEL_ID && (
           <Script
             id="trackflow-init"
