@@ -126,7 +126,7 @@ export function FloatingCards() {
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 hidden lg:block"
     >
-      {/* Top left — Visualizações */}
+      {/* Top left, Visualizações */}
       <Card
         className="absolute top-20 -left-10 w-[230px]"
         style={{ transform: "rotate(10deg)" }}
@@ -136,7 +136,7 @@ export function FloatingCards() {
         <AreaChart />
       </Card>
 
-      {/* Bottom left — Aquisição de clientes */}
+      {/* Bottom left, Aquisição de clientes */}
       <Card
         className="absolute top-[70%] -left-14 w-[260px]"
         style={{ transform: "rotate(7deg)" }}
@@ -173,7 +173,7 @@ export function FloatingCards() {
         </div>
       </Card>
 
-      {/* Top right — Visualizações totais */}
+      {/* Top right, Visualizações totais */}
       <Card
         className="absolute top-24 -right-16 w-[240px]"
         style={{ transform: "rotate(10deg)" }}
@@ -196,7 +196,7 @@ export function FloatingCards() {
         <BarChart />
       </Card>
 
-      {/* Bottom right — Taxa de conversão */}
+      {/* Bottom right, Taxa de conversão */}
       <Card
         className="absolute top-[72%] -right-20 w-[260px]"
         style={{ transform: "rotate(7deg)" }}

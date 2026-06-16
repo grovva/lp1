@@ -10,11 +10,11 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { useIsMobile } from "@/components/motion/useIsMobile";
 
-// Linha completa — desenha até o canto superior direito
+// Linha completa, desenha até o canto superior direito
 const PATH =
   "M0 130 C 60 125, 100 132, 140 118 C 180 104, 200 122, 230 95 C 260 68, 290 78, 320 40 C 340 18, 350 22, 360 14";
 
-// Sub-path até (320, 40) — onde a bolinha deve parar (antes da chegada da linha)
+// Sub-path até (320, 40), onde a bolinha deve parar (antes da chegada da linha)
 const MARKER_PATH =
   "M0 130 C 60 125, 100 132, 140 118 C 180 104, 200 122, 230 95 C 260 68, 290 78, 320 40";
 
@@ -81,7 +81,7 @@ export function GrowthChart() {
       await ctrlLine;
       if (cancelled) return;
 
-      // Linha terminou e bolinha já está visível — viaja imediatamente
+      // Linha terminou e bolinha já está visível, viaja imediatamente
       const ctrlBall = animate(ballProgress, 1, {
         duration: ballDuration,
         ease: "linear",

@@ -75,7 +75,7 @@ export function Testimonials() {
           </div>
         </Reveal>
 
-        {/* Cards — horizontal carousel on mobile, grid on desktop */}
+        {/* Cards, horizontal carousel on mobile, grid on desktop */}
         <div
           ref={scrollerRef}
           className="md:grid md:grid-cols-3 md:gap-6 flex gap-4 md:overflow-visible overflow-x-auto snap-x snap-mandatory scrollbar-none -mx-6 md:mx-0 px-6 md:px-0 pb-2 md:pb-0"
@@ -85,7 +85,7 @@ export function Testimonials() {
               key={t.name}
               className="group relative bg-grovva-paper rounded-2xl border border-grovva-line/80 p-6 md:p-7 flex flex-col gap-5 transition-all md:hover:border-grovva-green/50 md:hover:-translate-y-1 md:hover:shadow-[0_24px_50px_-22px_rgba(15,27,20,0.18)] snap-start shrink-0 w-[85%] md:w-auto"
             >
-              {/* top row — quote mark + stars */}
+              {/* top row, quote mark + stars */}
               <div className="flex items-start justify-between">
                 <div
                   className="em-serif text-grovva-green/80 text-[56px] leading-none select-none"

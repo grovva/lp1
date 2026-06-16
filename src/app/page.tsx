@@ -1,6 +1,7 @@
 import { HeroV2 } from "@/components/landing/HeroV2";
 import { Solution } from "@/components/landing/Solution";
 import { SalesSystem } from "@/components/landing/SalesSystem";
+import { SistemaTeaser } from "@/components/landing/SistemaTeaser";
 import { SalesCases } from "@/components/landing/SalesCases";
 import { Footer } from "@/components/landing/Footer";
 
@@ -11,6 +12,7 @@ export default function Home() {
         <HeroV2 />
         <Solution />
         <SalesSystem />
+        <SistemaTeaser />
         <SalesCases />
       </main>
       <Footer />

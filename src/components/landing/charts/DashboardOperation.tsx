@@ -11,10 +11,10 @@ const STAGES = [
   { label: "Clientes", count: 311 },
 ];
 
-// Cubic Bezier smooth — tendência de alta
+// Cubic Bezier smooth, tendência de alta
 const SPARK_UP =
   "M 0 17 C 10 17, 14 12, 22 12 C 30 12, 34 8, 42 8 C 50 8, 52 4, 56 3";
-// Cubic Bezier smooth — outro padrão de alta (pra Receita)
+// Cubic Bezier smooth, outro padrão de alta (pra Receita)
 const SPARK_UP_ALT =
   "M 0 16 C 10 15, 14 14, 22 10 C 30 6, 36 11, 44 7 C 50 4, 52 5, 56 2";
 

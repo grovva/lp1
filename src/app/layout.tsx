@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Fraunces, Montserrat } from "next/font/google";
 import "./globals.css";
+import { Header } from "@/components/layout/Header";
 import { ContactModal } from "@/components/modal/ContactModal";
 
 const TRACKFLOW_PIXEL_ID = process.env.NEXT_PUBLIC_TRACKFLOW_PIXEL_ID;
@@ -58,6 +59,7 @@ t.tf('track','PageView');
             }}
           />
         )}
+        <Header />
         {children}
         <ContactModal />
       </body>
