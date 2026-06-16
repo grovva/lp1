@@ -16,7 +16,7 @@ export function Hero() {
       />
       <div className="relative z-[2] container mx-auto px-6 max-w-[1200px] pt-10 pb-14 md:pt-20 md:pb-28">
         <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-center">
-          {/* Left — text content */}
+          {/* Left, text content */}
           <div className="flex flex-col gap-5">
             <Image
               src="/images/logo-grovva-v2.png"
@@ -63,10 +63,10 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right — doctor image with floating badges */}
+          {/* Right, doctor image with floating badges */}
           <div className="relative flex justify-center lg:justify-end">
             <div className="relative">
-              {/* framed card — thicker paper border, asymmetric corners */}
+              {/* framed card, thicker paper border, asymmetric corners */}
               <div
                 className="relative bg-grovva-paper p-4 sm:p-6 md:p-7 shadow-[0_40px_80px_-20px_rgba(15,27,20,0.32),0_20px_40px_-18px_rgba(15,27,20,0.18),0_6px_14px_-6px_rgba(15,27,20,0.08)]"
                 style={{ borderRadius: "40px 0 72px" }}

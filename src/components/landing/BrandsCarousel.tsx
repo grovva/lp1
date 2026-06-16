@@ -56,22 +56,6 @@ export function BrandsCarousel({ logos }: BrandsCarouselProps) {
       }}
     >
       <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 left-0 w-12 md:w-24 z-10"
-        style={{
-          background:
-            "linear-gradient(to right, var(--color-grovva-dark) 0%, rgba(14,22,17,0.3) 55%, transparent 100%)",
-        }}
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 right-0 w-12 md:w-24 z-10"
-        style={{
-          background:
-            "linear-gradient(to left, var(--color-grovva-dark) 0%, rgba(14,22,17,0.3) 55%, transparent 100%)",
-        }}
-      />
-      <div
         ref={trackRef}
         className="flex w-max items-center gap-0 md:gap-16 will-change-transform"
       >

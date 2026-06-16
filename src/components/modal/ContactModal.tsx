@@ -107,7 +107,7 @@ export function ContactModal() {
     }, 300);
   };
 
-  // Global click delegation — any [data-contact-cta] element opens the modal.
+  // Global click delegation, any [data-contact-cta] element opens the modal.
   // Also listens for a custom 'open-contact-modal' event as a fallback.
   useEffect(() => {
     const onClick = (e: Event) => {
@@ -364,12 +364,12 @@ export function ContactModal() {
       </div>
 
       <style jsx>{`
-        /* Backdrop — fade in */
+        /* Backdrop, fade in */
         .cm-backdrop {
           animation: cm-fade 260ms ease-out both;
         }
 
-        /* Panel — mobile: slide up from bottom, desktop: zoom in from center */
+        /* Panel, mobile: slide up from bottom, desktop: zoom in from center */
         .cm-panel {
           animation: cm-slide-up 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
           transform-origin: bottom center;

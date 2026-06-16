@@ -62,7 +62,7 @@ export function PainPoints() {
         </Reveal>
 
         <div className="grid lg:grid-cols-[1fr_0.8fr] gap-12 lg:gap-16 items-center">
-          {/* Left — pain point cards */}
+          {/* Left, pain point cards */}
           <div className="flex flex-col gap-3">
             {painPoints.map((point, i) => (
               <Reveal key={point.title} delay={i * 0.08}>
@@ -102,7 +102,7 @@ export function PainPoints() {
             </button>
           </div>
 
-          {/* Right — portrait image with decorative rings behind (hidden on mobile) */}
+          {/* Right, portrait image with decorative rings behind (hidden on mobile) */}
           <div className="hidden lg:flex justify-center lg:justify-end lg:-mt-16">
             <div className="relative size-[400px] md:size-[520px] flex items-center justify-center">
               {/* decorative rings behind the image */}

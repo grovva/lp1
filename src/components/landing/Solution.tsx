@@ -21,7 +21,7 @@ function AutomationFlowVisual() {
       <div className="absolute inset-0 flex items-center justify-center p-2 md:p-3">
         <Image
           src="/images/sales-flow-clock.png"
-          alt="Automação Grovva — fluxo de atendimento e fechamento"
+          alt="Automação Grovva, fluxo de atendimento e fechamento"
           width={1536}
           height={1024}
           className="w-full h-auto max-w-[88%] object-contain"
@@ -111,7 +111,7 @@ export function Solution() {
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-2.5">
-          {/* Card 1 — Geração de leads qualificados (4 cols) */}
+          {/* Card 1, Geração de leads qualificados (4 cols) */}
           <div className="md:col-span-4 group h-full">
           <article className="h-full rounded-2xl bg-white p-6 md:p-7 flex flex-col transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_20px_40px_-12px_rgba(15,27,20,0.12)] group-hover:ring-1 group-hover:ring-grovva-green/15">
             <Reveal delay={0.05} y={10}>
@@ -131,7 +131,7 @@ export function Solution() {
           </article>
           </div>
 
-          {/* Card 3 — O sistema trabalha (3 cols, narrow) */}
+          {/* Card 3, O sistema trabalha (3 cols, narrow) */}
           <div className="md:col-span-3 group h-full">
           <article className="h-full rounded-2xl bg-white p-6 md:p-7 flex flex-col transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_20px_40px_-12px_rgba(15,27,20,0.12)] group-hover:ring-1 group-hover:ring-grovva-green/15">
             <Reveal delay={0.05} y={10}>
@@ -151,7 +151,7 @@ export function Solution() {
           </article>
           </div>
 
-          {/* Card 5 — Crescimento que não depende de sorte (5 cols) */}
+          {/* Card 5, Crescimento que não depende de sorte (5 cols) */}
           <div className="md:col-span-5 group h-full">
           <article className="h-full rounded-2xl bg-white p-6 md:p-7 flex flex-col transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_20px_40px_-12px_rgba(15,27,20,0.12)] group-hover:ring-1 group-hover:ring-grovva-green/15">
             <Reveal delay={0.05} y={10}>
@@ -172,7 +172,7 @@ export function Solution() {
           </article>
           </div>
 
-          {/* Card 4 (agora à esquerda) — Controle da sua operação (7 cols, wide) */}
+          {/* Card 4 (agora à esquerda), Controle da sua operação (7 cols, wide) */}
           <div className="md:col-span-7 group h-full">
           <article className="h-full rounded-2xl bg-white p-6 md:p-7 flex flex-col transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_20px_40px_-12px_rgba(15,27,20,0.12)] group-hover:ring-1 group-hover:ring-grovva-green/15">
             <Reveal delay={0.05} y={10}>
@@ -193,7 +193,7 @@ export function Solution() {
           </article>
           </div>
 
-          {/* Card 2 (agora à direita) — Seu time para de perder venda (5 cols) */}
+          {/* Card 2 (agora à direita), Seu time para de perder venda (5 cols) */}
           <div className="md:col-span-5 group h-full">
           <article className="h-full rounded-2xl bg-white p-6 md:p-7 flex flex-col transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_20px_40px_-12px_rgba(15,27,20,0.12)] group-hover:ring-1 group-hover:ring-grovva-green/15">
             <Reveal delay={0.05} y={10}>

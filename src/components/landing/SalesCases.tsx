@@ -95,7 +95,7 @@ function VisualPanel({ c }: { c: Case }) {
 
 export function SalesCases() {
   return (
-    <section className="bg-white py-20 md:py-32">
+    <section id="cases" className="bg-white py-20 md:py-32 scroll-mt-20">
       <div className="container mx-auto px-6 max-w-[1200px]">
         {/* Header */}
         <div className="text-center max-w-[900px] mx-auto mb-12 md:mb-16">
@@ -114,7 +114,7 @@ export function SalesCases() {
           </Reveal>
         </div>
 
-        {/* Cases — sticky deck stack (só em md+, no mobile vira scroll normal) */}
+        {/* Cases, sticky deck stack (só em md+, no mobile vira scroll normal) */}
         <div className="space-y-4 md:space-y-6">
           {cases.map((c, i) => (
             <div
@@ -129,10 +129,10 @@ export function SalesCases() {
                   border: "1px solid #E4DFD5",
                 }}
               >
-                {/* LEFT — visual panel */}
+                {/* LEFT, visual panel */}
                 <VisualPanel c={c} />
 
-                {/* RIGHT — content */}
+                {/* RIGHT, content */}
                 <div className="flex flex-col gap-5">
                   {/* Name + role */}
                   <div>
@@ -178,7 +178,7 @@ export function SalesCases() {
               </article>
             </div>
           ))}
-          {/* Scroll dwell — só faz sentido no desktop, no mobile não tem deck */}
+          {/* Scroll dwell, só faz sentido no desktop, no mobile não tem deck */}
           <div aria-hidden="true" className="hidden md:block h-[15vh]" />
         </div>
       </div>

@@ -127,7 +127,8 @@ function ArrowRight({ className = "" }: { className?: string }) {
 export function SalesSystem() {
   return (
     <section
-      className="relative overflow-hidden text-white py-20 md:py-32"
+      id="growth"
+      className="relative overflow-hidden text-white py-20 md:py-32 scroll-mt-20"
       style={{
         background:
           "radial-gradient(900px 600px at 50% 0%, rgba(20, 84, 91, 0.55), transparent 70%), linear-gradient(180deg, #0a1814 0%, #060d0a 100%)",
@@ -183,7 +184,7 @@ export function SalesSystem() {
           </Reveal>
         </div>
 
-        {/* Steps grid — glass cards com numeral watermark suave */}
+        {/* Steps grid, glass cards com numeral watermark suave */}
         <div className="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
           {steps.map((step, i) => (
             <Reveal key={step.number} delay={0.4 + i * 0.12} className="group h-full">
