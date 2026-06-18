@@ -61,9 +61,13 @@ export function HeroMedia() {
             <video
               ref={(el) => {
                 videoRefs.current[i] = el;
+                // iOS/Safari só faz autoplay se `muted` estiver no DOM de fato.
+                // O React não reflete `muted` de forma confiável, então setamos na mão.
+                if (el) el.muted = true;
               }}
               src={s.src}
               muted
+              autoPlay
               playsInline
               preload="auto"
               className="size-full object-cover"
