@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "@/components/motion/Reveal";
+import { GrowUnderline } from "@/components/motion/GrowUnderline";
 import { Breadcrumb } from "@/components/sections/SectionParts";
 import { PreviewWindow } from "@/components/landing/preview/PreviewWindow";
 
@@ -18,13 +19,9 @@ export function SistemaHero() {
         <Reveal>
           <div className="mx-auto max-w-[820px] pt-24 text-center md:pt-28">
             <Breadcrumb current="O Sistema" />
-            <span className="inline-flex items-center gap-2 rounded-full border border-grovva-green/50 bg-grovva-green/[0.12] px-3.5 py-1.5 text-[12px] font-medium text-grovva-green">
-              <span className="relative flex size-2">
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-grovva-green opacity-60" />
-                <span className="relative inline-flex size-2 rounded-full bg-grovva-green" />
-              </span>
+            <GrowUnderline className="text-[12px] font-semibold uppercase tracking-[0.18em] text-grovva-green md:text-[13px]">
               O Sistema Grovva Sales
-            </span>
+            </GrowUnderline>
             <h1 className="mx-auto mt-6 max-w-[860px] font-heading text-[30px] font-bold leading-[1.08] tracking-[-0.025em] text-balance md:text-[52px]">
               Um sistema de vendas feito{" "}
               <span className="text-grovva-green">sob medida</span> pra sua operação

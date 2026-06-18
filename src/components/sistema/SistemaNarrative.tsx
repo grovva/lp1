@@ -29,7 +29,7 @@ function Personalizacao() {
   ];
 
   return (
-    <section className="relative py-16 md:py-28" style={{ backgroundColor: "#EEF2F5" }}>
+    <section className="relative py-12 md:py-28" style={{ backgroundColor: "#EEF2F5" }}>
       <div className="container mx-auto max-w-[1200px] px-6">
         <SectionHead
           eyebrow="Personalização"
@@ -65,7 +65,7 @@ function Modular() {
   ];
 
   return (
-    <section className="relative bg-white py-16 md:py-28">
+    <section className="relative bg-white py-12 md:py-28">
       <div className="container mx-auto max-w-[1200px] px-6">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
@@ -161,7 +161,7 @@ function Automacoes() {
 
   return (
     <section
-      className="relative overflow-hidden py-20 md:py-32 text-white"
+      className="relative overflow-hidden py-12 md:py-32 text-white"
       style={{
         background:
           "radial-gradient(900px 600px at 50% 0%, rgba(20, 84, 91, 0.5), transparent 70%), linear-gradient(180deg, #0a1814 0%, #060d0a 100%)",
@@ -227,7 +227,7 @@ function Inteligencia() {
   ];
 
   return (
-    <section className="relative py-16 md:py-28" style={{ backgroundColor: "#EEF2F5" }}>
+    <section className="relative py-12 md:py-28" style={{ backgroundColor: "#EEF2F5" }}>
       <div className="container mx-auto max-w-[1200px] px-6">
         <SectionHead
           eyebrow="Dados e previsibilidade"

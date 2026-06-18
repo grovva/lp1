@@ -1,12 +1,12 @@
 import { Reveal } from "@/components/motion/Reveal";
-import { Typewriter } from "@/components/motion/Typewriter";
+import { RotatingText } from "@/components/motion/RotatingText";
 import { BrandsCarousel } from "@/components/landing/BrandsCarousel";
 import { HeroMedia } from "@/components/landing/HeroMedia";
 
 const rotatingBullets = [
-  "+ de 4M gerenciados em anúncios",
-  "Clientes em 6 países",
-  "+ de 40M de receita gerada para nossos clientes",
+  "+R$4M gerenciados em anúncios",
+  "Clientes ativos em 6 países",
+  "+R$40M de receita gerada",
 ];
 
 const brandLogos = [1, 2, 3, 4, 5, 7, 8, 9, 10].map(
@@ -74,26 +74,17 @@ export function HeroV2() {
   return (
     <section className="relative overflow-hidden bg-grovva-dark text-white">
       {/* Bloco principal: hero sempre 100vh; conteúdo no topo, marcas no rodapé, vídeo enchendo */}
-      <div className="relative flex min-h-[80svh] flex-col overflow-hidden">
+      <div className="relative flex min-h-[75svh] flex-col overflow-hidden md:min-h-[85svh]">
         <HeroMedia />
 
-        <div className="container relative z-[2] mx-auto max-w-[1200px] px-6 pt-28 text-center md:pt-36">
-          {/* Top pill, typewriter */}
+        <div className="container relative z-[2] mx-auto max-w-[1200px] px-6 pt-28 text-center md:pt-32">
+          {/* Eyebrow: ticker vertical (frase troca com transição suave) */}
           <Reveal delay={0.15}>
-            <div className="mb-6 md:mb-10 flex justify-center">
-              <span
-                className="inline-flex items-center gap-2.5 rounded-full border border-grovva-green/70 bg-grovva-green/[0.18] px-3.5 py-1.5 md:px-4 md:py-2 text-[12px] md:text-[14px] text-grovva-green font-medium"
-                style={{
-                  boxShadow:
-                    "0 0 0 1px rgba(62,168,92,0.15), 0 8px 24px -8px rgba(62,168,92,0.45)",
-                }}
-              >
-                <span className="relative flex size-2">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-grovva-green opacity-75" />
-                  <span className="relative inline-flex size-2 rounded-full bg-grovva-green" />
-                </span>
-                <Typewriter words={rotatingBullets} />
-              </span>
+            <div className="mb-7 flex justify-center md:mb-11">
+              <RotatingText
+                words={rotatingBullets}
+                className="font-heading text-[14px] font-semibold tracking-[-0.005em] text-grovva-green md:text-[16px]"
+              />
             </div>
           </Reveal>
 

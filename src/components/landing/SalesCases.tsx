@@ -95,7 +95,7 @@ function VisualPanel({ c }: { c: Case }) {
 
 export function SalesCases() {
   return (
-    <section id="cases" className="bg-white py-20 md:py-32 scroll-mt-20">
+    <section id="cases" className="bg-white py-12 md:py-32 scroll-mt-20">
       <div className="container mx-auto px-6 max-w-[1200px]">
         {/* Header */}
         <div className="text-center max-w-[900px] mx-auto mb-12 md:mb-16">

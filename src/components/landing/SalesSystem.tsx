@@ -128,7 +128,7 @@ export function SalesSystem() {
   return (
     <section
       id="growth"
-      className="relative overflow-hidden text-white py-20 md:py-32 scroll-mt-20"
+      className="relative overflow-hidden text-white py-12 md:py-32 scroll-mt-20"
       style={{
         background:
           "radial-gradient(900px 600px at 50% 0%, rgba(20, 84, 91, 0.55), transparent 70%), linear-gradient(180deg, #0a1814 0%, #060d0a 100%)",

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type NavLink = { label: string; href: string };
@@ -48,6 +49,7 @@ function AnimatedLogo({ p }: { p: number }) {
 }
 
 export function Header() {
+  const pathname = usePathname();
   const [p, setP] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -101,6 +103,9 @@ export function Header() {
     };
   }, [menuOpen]);
 
+  // O quiz é uma experiência isolada (sem navegação do site).
+  if (pathname?.startsWith("/quiz")) return null;
+
   const pe = easeInOut(p);
   const logoP = isMobile ? 0 : pe; // no mobile a logo não colapsa
 
@@ -114,12 +119,18 @@ export function Header() {
 
   return (
     <header className="pointer-events-none fixed inset-x-0 top-3 z-50 flex flex-col items-center px-4 md:top-4">
-      {/* Pill flutuante — largura comprime conforme o scroll (mesmo progresso da logo) */}
+      {/* Pill flutuante — largura comprime e fundo escurece conforme o scroll */}
       <div
         className="pointer-events-auto relative flex items-center justify-between rounded-full py-2.5 pl-6 pr-5 md:py-3.5 md:pl-8 md:pr-6"
-        style={{ ...pillStyle, width: `min(94vw, ${Math.round(680 - 230 * pe)}px)` }}
+        style={{
+          ...pillStyle,
+          // aberto = mais glass/transparente; fechado = mais escuro
+          background: `rgba(8,13,10,${(0.16 + 0.48 * pe).toFixed(3)})`,
+          borderColor: `rgba(255,255,255,${(0.08 + 0.06 * pe).toFixed(3)})`,
+          width: `min(94vw, ${Math.round(680 - 230 * pe)}px)`,
+        }}
       >
-        <Link href="/" aria-label="Página inicial da grovva" className="flex items-center">
+        <Link href="/" aria-label="Página inicial da grovva" className="flex items-center" style={{ transform: "translateY(3px)" }}>
           <AnimatedLogo p={logoP} />
         </Link>
 

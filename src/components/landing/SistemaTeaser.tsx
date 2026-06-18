@@ -78,17 +78,13 @@ function KanbanMock() {
 
 export function SistemaTeaser() {
   return (
-    <section className="relative bg-grovva-bg py-16 md:py-24">
+    <section className="relative bg-grovva-bg py-12 md:py-24">
       <div className="container mx-auto max-w-[1200px] px-6">
         <Reveal>
           <div className="grid items-center gap-8 rounded-3xl border border-grovva-line bg-white p-6 md:grid-cols-2 md:gap-12 md:p-10 lg:p-12">
             {/* Copy */}
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full bg-grovva-green-soft px-3 py-1 text-[11px] font-semibold text-grovva-green-dark">
-                <span className="relative flex size-1.5">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-grovva-green opacity-60" />
-                  <span className="relative inline-flex size-1.5 rounded-full bg-grovva-green" />
-                </span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-grovva-green-dark">
                 Prévia interativa
               </span>
               <h2 className="mt-4 font-heading text-[26px] font-bold leading-[1.1] tracking-[-0.02em] text-balance text-grovva-ink md:text-[38px]">
