@@ -103,19 +103,19 @@ export function ContatosView() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-5 py-3.5" style={{ fontSize: 13, color: C.mutedFg, fontFamily: "ui-monospace, monospace" }}>{c.phone}</td>
+                  <td className="whitespace-nowrap px-5 py-3.5" style={{ fontSize: 13, color: C.mutedFg, fontFamily: "ui-monospace, monospace" }}>{c.phone}</td>
                   <td className="px-5 py-3.5">
-                    <span className="inline-flex items-center rounded-full px-2.5 py-0.5 font-semibold" style={{ fontSize: 11, background: green ? "#DCFCE7" : C.muted, color: green ? "#166534" : C.fg }}>{c.source}</span>
+                    <span className="inline-flex items-center whitespace-nowrap rounded-full px-2.5 py-0.5 font-semibold" style={{ fontSize: 11, background: green ? "#DCFCE7" : C.muted, color: green ? "#166534" : C.fg }}>{c.source}</span>
                   </td>
                   <td className="px-5 py-3.5">
                     <div className="flex flex-wrap gap-1">
                       {c.tags.map((t) => <TagPill key={t} tag={t} />)}
                     </div>
                   </td>
-                  <td className="px-5 py-3.5 tabular-nums" style={{ fontSize: 13, color: C.mutedFg }}>
+                  <td className="whitespace-nowrap px-5 py-3.5 tabular-nums" style={{ fontSize: 13, color: C.mutedFg }}>
                     {state.leads.filter((l) => l.contactName === c.name).length}
                   </td>
-                  <td className="px-5 py-3.5" style={{ fontSize: 13, color: C.mutedFg }}>
+                  <td className="whitespace-nowrap px-5 py-3.5" style={{ fontSize: 13, color: C.mutedFg }}>
                     {new Date(c.createdAt).toLocaleDateString("pt-BR")}
                   </td>
                   <td className="px-5 py-3.5 text-right">

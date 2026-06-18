@@ -30,7 +30,7 @@ function Pilares() {
   ];
 
   return (
-    <section className="relative py-16 md:py-28" style={{ backgroundColor: "#EEF2F5" }}>
+    <section className="relative py-12 md:py-28" style={{ backgroundColor: "#EEF2F5" }}>
       <div className="container mx-auto max-w-[1200px] px-6">
         <SectionHead
           eyebrow="Geração de demanda"
@@ -79,7 +79,7 @@ function Processo() {
 
   return (
     <section
-      className="relative overflow-hidden py-20 md:py-32 text-white"
+      className="relative overflow-hidden py-12 md:py-32 text-white"
       style={{
         background:
           "radial-gradient(900px 600px at 50% 0%, rgba(20, 84, 91, 0.5), transparent 70%), linear-gradient(180deg, #0a1814 0%, #060d0a 100%)",
@@ -121,7 +121,7 @@ function Processo() {
 /* ===================================================================== */
 function Integracao() {
   return (
-    <section className="relative bg-white py-16 md:py-28">
+    <section className="relative bg-white py-12 md:py-28">
       <div className="container mx-auto max-w-[1200px] px-6">
         <Reveal>
           <div className="grid grid-cols-1 items-center gap-8 rounded-3xl border border-grovva-line bg-grovva-card-bg p-7 md:grid-cols-[1.3fr_1fr] md:gap-12 md:p-10 lg:p-12">

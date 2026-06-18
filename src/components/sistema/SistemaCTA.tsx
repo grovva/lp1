@@ -2,7 +2,7 @@ import { Reveal } from "@/components/motion/Reveal";
 
 export function SistemaCTA() {
   return (
-    <section className="relative bg-grovva-bg py-20 md:py-28">
+    <section className="relative bg-grovva-bg py-12 md:py-28">
       <div className="container mx-auto max-w-[1200px] px-6">
         <Reveal>
           <div

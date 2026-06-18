@@ -85,7 +85,7 @@ function ArrowRight({ className = "" }: { className?: string }) {
 export function Solution() {
   return (
     <section
-      className="relative py-16 md:py-28"
+      className="relative py-12 md:pb-28 md:pt-20"
       style={{ backgroundColor: "#EEF2F5" }}
     >
       <div className="container mx-auto px-6 max-w-[1200px] relative">

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useRef, useState } from "react";
+import { GrowUnderline } from "@/components/motion/GrowUnderline";
 
 const WHATSAPP_NUMBER =
   process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5511978814240";
@@ -278,13 +279,9 @@ export function Quiz() {
               exit="exit"
               className="text-center"
             >
-              <span className="inline-flex items-center gap-2 rounded-full border border-grovva-green/60 bg-grovva-green/[0.14] px-3.5 py-1.5 text-[12px] font-medium text-grovva-green">
-                <span className="relative flex size-2">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-grovva-green opacity-75" />
-                  <span className="relative inline-flex size-2 rounded-full bg-grovva-green" />
-                </span>
+              <GrowUnderline className="text-[12px] font-semibold uppercase tracking-[0.18em] text-grovva-green md:text-[13px]">
                 Diagnóstico gratuito · 1 minuto
-              </span>
+              </GrowUnderline>
               <h1 className="mx-auto mt-7 max-w-[720px] font-heading text-[30px] font-bold leading-[1.12] tracking-[-0.02em] md:text-[44px]">
                 Descubra o que está{" "}
                 <span className="text-grovva-green">travando</span> o
