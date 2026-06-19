@@ -239,3 +239,9 @@
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
 }
+
+/* Cases: troca de case no seletor interativo */
+@keyframes caseSwap {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
