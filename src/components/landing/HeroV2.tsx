@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/motion/Reveal";
-import { RotatingText } from "@/components/motion/RotatingText";
+import { Typewriter } from "@/components/motion/Typewriter";
 import { BrandsCarousel } from "@/components/landing/BrandsCarousel";
 import { HeroMedia } from "@/components/landing/HeroMedia";
 
@@ -78,10 +78,10 @@ export function HeroV2() {
         <HeroMedia />
 
         <div className="container relative z-[2] mx-auto max-w-[1200px] px-6 pt-28 text-center md:pt-32">
-          {/* Eyebrow: ticker vertical (frase troca com transição suave) */}
+          {/* Eyebrow: animação de escrita (typewriter) */}
           <Reveal delay={0.15}>
             <div className="mb-7 flex justify-center md:mb-11">
-              <RotatingText
+              <Typewriter
                 words={rotatingBullets}
                 className="font-heading text-[14px] font-semibold tracking-[-0.005em] text-grovva-green md:text-[16px]"
               />
