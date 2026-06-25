@@ -100,7 +100,7 @@ function KanbanMock() {
 
 export function SistemaTeaser() {
   return (
-    <section className="relative overflow-hidden bg-grovva-bg py-12 md:py-24">
+    <section className="relative overflow-hidden bg-[#F9FA3D] py-12 md:py-24">
       <div className="container mx-auto max-w-[1200px] px-6">
         <div className="grid items-center gap-10 md:grid-cols-[0.85fr_1.15fr] md:gap-14 lg:gap-20">
           {/* Copy */}

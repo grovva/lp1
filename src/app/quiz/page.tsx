@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Quiz } from "@/components/quiz/Quiz";
+import { Quiz2 } from "@/components/quiz/Quiz2";
 
 export const metadata: Metadata = {
-  title: "Diagnóstico gratuito | grovva",
+  title: "Teste de 1 minuto | Grovva",
   description:
-    "Responda 6 perguntas rápidas e receba um diagnóstico com o próximo passo certo pra crescer com previsibilidade.",
+    "Descubra como gerar mais agendamentos e faturar mais na sua clínica. Responda o teste de 1 minuto e fale com um especialista.",
 };
 
 export default function QuizPage() {
-  return <Quiz />;
+  return <Quiz2 />;
 }
