@@ -24,7 +24,7 @@ const CHOICE_LABELS: Record<string, string> = {
 // Monta o link do WhatsApp com as respostas já preenchidas, como se o
 // próprio lead estivesse mandando os dados dele em texto.
 function buildWhatsappUrl(
-  contact: { name: string; email: string; phone: string },
+  contact: { name: string; email: string; phone: string; instagram: string },
   answers: Record<string, string>,
 ): string {
   const lines = [
@@ -32,6 +32,7 @@ function buildWhatsappUrl(
     "",
     `Nome: ${contact.name}`,
     `E-mail: ${contact.email}`,
+    `Instagram: ${contact.instagram}`,
     `WhatsApp: ${contact.phone}`,
     "",
     ...Object.keys(CHOICE_LABELS)
@@ -70,7 +71,7 @@ type Choice = {
 
 type InputStep = {
   kind: "input";
-  key: "name" | "email" | "phone";
+  key: "name" | "email" | "instagram" | "phone";
   title: ReactNode;
   subtitle?: string;
   helper?: string;
@@ -163,6 +164,18 @@ const STEPS: Step[] = [
   },
   {
     kind: "input",
+    key: "instagram",
+    title: (
+      <>
+        Qual o <Em underline={false}>@ do Instagram</Em> da sua clínica?
+      </>
+    ),
+    subtitle: "Me informe abaixo por favor 👇",
+    placeholder: "@suaclinica",
+    inputMode: "text",
+  },
+  {
+    kind: "input",
     key: "phone",
     title: (
       <>
@@ -196,7 +209,7 @@ export function Quiz2() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [contact, setContact] = useState({ name: "", email: "", phone: "" });
+  const [contact, setContact] = useState({ name: "", email: "", phone: "", instagram: "" });
   const submitted = useRef(false);
 
   const total = STEPS.length;
@@ -249,7 +262,8 @@ export function Quiz2() {
         name: contact.name,
         email: contact.email,
         phone: contact.phone,
-        answers,
+        instagram: contact.instagram,
+        answers: { ...answers, instagram: contact.instagram },
       }),
     }).catch((err) => console.error("Quiz2 submit error:", err));
   }, [screen, contact, answers]);
@@ -258,6 +272,7 @@ export function Quiz2() {
     if (step.kind === "choice") return Boolean(answers[step.key]);
     if (step.key === "name") return contact.name.trim().length >= 3;
     if (step.key === "email") return /\S+@\S+\.\S+/.test(contact.email);
+    if (step.key === "instagram") return contact.instagram.trim().length >= 2;
     return contact.phone.replace(/\D/g, "").length >= 10;
   }
 
@@ -394,9 +409,9 @@ function StepView({
 }: {
   step: Step;
   answers: Record<string, string>;
-  contact: { name: string; email: string; phone: string };
+  contact: { name: string; email: string; phone: string; instagram: string };
   onSelect: (key: string, value: string) => void;
-  onContact: (c: { name: string; email: string; phone: string }) => void;
+  onContact: (c: { name: string; email: string; phone: string; instagram: string }) => void;
   onContinue: () => void;
   canContinue: boolean;
 }) {
