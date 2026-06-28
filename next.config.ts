@@ -10,6 +10,25 @@ const nextConfig: NextConfig = {
   images: {
     qualities: [75, 90],
   },
+  // Rota limpa /proposta servindo o HTML estático da proposta comercial
+  async rewrites() {
+    return [
+      { source: "/proposta", destination: "/proposta/index.html" },
+    ];
+  },
+  // Proposta comercial não deve ser indexada por buscadores
+  async headers() {
+    return [
+      {
+        source: "/proposta/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
+        source: "/proposta",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
