@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
-export const SITE_URL = "https://grovva.com.br";
+// Domínio primário na Vercel: grovva.com.br faz 307 → www, então o canônico é o www.
+export const SITE_URL = "https://www.grovva.com.br";
 export const SITE_NAME = "Grovva";
 
 export const SITE_DESCRIPTION =
