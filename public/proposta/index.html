@@ -553,13 +553,6 @@
   .anchor-row .val { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 15px; color: var(--white); white-space: nowrap; }
   .anchor-row.head { background: var(--ink-2); }
   .anchor-row.head .item, .anchor-row.head .val { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-  /* serviços riscados (já inclusos no Grovva Scale) */
-  .anchor-row.cut .item, .anchor-row.cut .val {
-    text-decoration: line-through;
-    text-decoration-color: var(--danger);
-    text-decoration-thickness: 2px;
-    color: var(--muted);
-  }
   .anchor-row.total { background: rgba(255,107,107,0.06); }
   .anchor-row.total .item { color: var(--white); font-weight: 600; }
   .anchor-row.total .val { color: var(--danger); font-size: 20px; }
@@ -605,12 +598,21 @@
   }
   @media (prefers-reduced-motion: reduce) { .price-trigger { animation: none; } }
   .price-name { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); font-weight: 600; margin-bottom: 12px; }
+  .price-old { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: clamp(20px, 2.4vw, 26px); line-height: 1; letter-spacing: -0.02em; color: var(--muted); text-decoration: line-through; text-decoration-color: var(--danger); text-decoration-thickness: 2px; margin-bottom: 6px; }
+  .price-old small { font-size: 0.55em; font-weight: 600; }
   .price-value { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: clamp(48px, 7vw, 84px); line-height: 1; letter-spacing: -0.04em; color: var(--white); }
   .price-value small { font-size: 0.32em; color: var(--muted); font-weight: 600; letter-spacing: 0; }
   .price-terms { margin-top: 18px; font-size: 13px; color: var(--muted-2); display: flex; flex-wrap: wrap; gap: 8px 14px; }
   .price-terms span { display: inline-flex; align-items: center; gap: 6px; }
   .price-terms span::before { content: "·"; color: var(--green); }
   .price-terms span:first-child::before { content: ""; }
+  /* condição especial de pagamento (gatilho de fechamento) */
+  .price-offer { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .price-offer .po-tag { display: inline-flex; align-items: center; gap: 7px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); font-weight: 700; margin-bottom: 10px; }
+  .price-offer .po-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px rgba(86,194,113,0.8); }
+  .price-offer p { font-size: 14px; color: var(--muted-2); line-height: 1.6; max-width: none; }
+  .price-offer strong { color: var(--white); font-weight: 600; }
+  .price-offer strong.date { color: var(--green); }
   .scale .closing { margin-top: 56px; text-align: center; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: clamp(22px, 3vw, 38px); line-height: 1.2; color: var(--white); }
   .scale .closing .accent { color: var(--green); }
   .scale-cta { display: flex; justify-content: center; margin-top: 32px; }
@@ -1100,10 +1102,10 @@
       <div class="anchor">
         <div class="anchor-row head"><span class="item">O que</span><span class="val">Valor de mercado</span></div>
         <div class="anchor-row"><span class="item">Gestão de tráfego pago</span><span class="val">R$1.500/mês</span></div>
-        <div class="anchor-row cut"><span class="item">CRM + automações</span><span class="val">R$800/mês</span></div>
-        <div class="anchor-row cut"><span class="item">Consultoria de vendas</span><span class="val">R$2.000/mês</span></div>
-        <div class="anchor-row cut"><span class="item">Treinamento de equipe</span><span class="val">R$1.500/mês</span></div>
-        <div class="anchor-row cut"><span class="item">Playbook de vendas</span><span class="val">R$2.000 único</span></div>
+        <div class="anchor-row"><span class="item">CRM + automações</span><span class="val">R$800/mês</span></div>
+        <div class="anchor-row"><span class="item">Consultoria de vendas</span><span class="val">R$2.000/mês</span></div>
+        <div class="anchor-row"><span class="item">Treinamento de equipe</span><span class="val">R$1.500/mês</span></div>
+        <div class="anchor-row"><span class="item">Playbook de vendas</span><span class="val">R$2.000 único</span></div>
         <div class="anchor-row total"><span class="item">Total se contratasse separado</span><span class="val">+R$7.800/mês</span></div>
       </div>
 
@@ -1120,11 +1122,16 @@
 
         <div class="price-box" id="priceBox">
           <div class="price-name">Grovva Scale</div>
+          <div class="price-old">R$1.997<small>/mês</small></div>
           <div class="price-value">R$997<small>/mês</small></div>
           <div class="price-terms">
             <span>Contrato de 90 dias</span>
             <span>Sem taxa de setup</span>
             <span>Sem surpresa no fim do mês</span>
+          </div>
+          <div class="price-offer">
+            <span class="po-tag">Condição especial</span>
+            <p>Fechando o contrato até <strong class="date">05/07/2026</strong>, você paga <strong>50% no fechamento</strong> e <strong>50% após 15 dias</strong>.</p>
           </div>
         </div>
       </div>
