@@ -10,10 +10,12 @@ const nextConfig: NextConfig = {
   images: {
     qualities: [75, 90],
   },
-  // Rota limpa /proposta servindo o HTML estático da proposta comercial
+  // Rota limpa /proposta (e links personalizados /proposta/<nome>) servindo
+  // o mesmo HTML estático da proposta comercial
   async rewrites() {
     return [
       { source: "/proposta", destination: "/proposta/index.html" },
+      { source: "/proposta/:slug", destination: "/proposta/index.html" },
     ];
   },
   // Proposta comercial não deve ser indexada por buscadores
