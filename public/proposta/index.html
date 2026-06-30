@@ -174,11 +174,12 @@
     -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
     z-index: 1;
   }
-  .hero .container { position: relative; z-index: 2; }
-  .hero .logo-mark { display: flex; margin-bottom: 48px; }
+  .hero .container { position: relative; z-index: 2; text-align: center; }
+  .hero .logo-mark { display: flex; justify-content: center; margin-bottom: 48px; }
   .hero .logo-mark img { height: clamp(40px, 6vw, 62px); width: auto; display: block; }
   .hero h1 {
-    max-width: 16ch;
+    max-width: 18ch;
+    margin: 0 auto;
     color: var(--white);
     clip-path: inset(0 100% -0.2em 0);
     animation: heroReveal 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
@@ -191,14 +192,14 @@
     0% { clip-path: inset(0 100% -0.2em 0); }
     100% { clip-path: inset(0 0% -0.2em 0); }
   }
-  .hero p.lead { margin-top: 32px; color: var(--muted-2); }
+  .hero p.lead { margin-top: 32px; margin-left: auto; margin-right: auto; color: var(--muted-2); }
   .hero p.lead strong { color: var(--white); font-weight: 600; }
 
   /* ===================== CTA BUTTON ===================== */
   .cta {
     display: inline-flex; align-items: center; gap: 12px;
     margin-top: 40px; padding: 18px 30px;
-    background: var(--green); color: var(--ink);
+    background: var(--green); color: var(--white);
     font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 16px;
     letter-spacing: -0.01em; border: none; border-radius: 100px; cursor: pointer;
     box-shadow: 0 18px 50px -18px rgba(86, 194, 113, 0.8);
@@ -252,8 +253,8 @@
     font-size: clamp(40px, 5vw, 68px); line-height: 1; letter-spacing: -0.04em;
     color: var(--white);
   }
-  .bignum .num .accent { color: var(--green); }
-  .bignum .label { font-size: 14px; color: var(--muted-2); margin-top: 14px; line-height: 1.4; }
+  .bignum .num .accent { color: var(--white); }
+  .bignum .label { font-size: 18px; color: var(--muted-2); margin-top: 16px; line-height: 1.45; }
 
   .logos-wrap { margin-top: 72px; }
   .logos-title {
@@ -355,6 +356,28 @@
   .score-reset { background: none; border: 1px solid var(--line); color: var(--muted); padding: 10px 18px; border-radius: 100px; font-size: 12px; cursor: pointer; }
   .score-reset:hover { border-color: var(--green); color: var(--white); }
 
+  /* --- Caixa do formulário em branco (destaque sobre o fundo escuro) --- */
+  .quiz { background: #FFFFFF; border-color: #FFFFFF; box-shadow: 0 40px 90px -40px rgba(0,0,0,0.7); }
+  .quiz .quiz-progress .bar { background: #ECECEC; }
+  .quiz .count { color: #8A8A8A; }
+  .quiz .q-pergunta { color: #0A0A0A; }
+  .quiz .q-opt { background: #F6F6F6; border-color: #E6E6E6; color: #555; }
+  .quiz .q-opt:hover { border-color: #BDBDBD; color: #0A0A0A; }
+  .quiz .q-dot { border-color: #D2D2D2; }
+  .quiz .q-opt.sel { color: #0A0A0A; }
+  .quiz .q-opt.sel.red    { background: rgba(255,107,107,0.12); }
+  .quiz .q-opt.sel.yellow { background: rgba(245,181,68,0.14); }
+  .quiz .q-opt.sel.green  { background: rgba(86,194,113,0.14); }
+  .quiz .q-back { color: #8A8A8A; }
+  .quiz .q-back:hover { color: #0A0A0A; }
+  .quiz .q-legend { color: #8A8A8A; }
+  .quiz .score-num { color: #0A0A0A; }
+  .quiz .score-num small { color: #8A8A8A; }
+  .quiz .score-bar { background: #F0F0F0; border-color: #E6E6E6; }
+  .quiz .score-msg { color: #0A0A0A; }
+  .quiz .score-reset { border-color: #E0E0E0; color: #777; }
+  .quiz .score-reset:hover { border-color: var(--green); color: #0A0A0A; }
+
   /* ===================== PILARES ===================== */
   .pilares { background: var(--ink); border-top: 1px solid var(--line); }
   .pilares h2 { max-width: 16ch; margin-bottom: 20px; }
@@ -376,29 +399,97 @@
   .pilar-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
   .pilar-num { font-family: 'Inter Tight', sans-serif; font-size: 48px; font-weight: 200; line-height: 1; color: var(--green); letter-spacing: -0.05em; }
   .pilar-emoji { font-size: 32px; }
-  .pilar h3 { color: var(--white); margin-bottom: 6px; }
-  .pilar .sub { font-size: 13px; color: var(--green); letter-spacing: 0.03em; margin-bottom: 18px; }
+  .pilar h3 { color: var(--white); margin-bottom: 6px; font-size: clamp(24px, 2.4vw, 32px); }
+  .pilar .sub { font-size: 16px; color: var(--green); letter-spacing: 0.03em; margin-bottom: 18px; }
   .pilar ul { list-style: none; padding: 0; }
-  .pilar li { padding: 10px 0; font-size: 14px; color: var(--muted-2); border-bottom: 1px solid var(--line); display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; }
+  .pilar li { padding: 11px 0; font-size: 16.5px; color: var(--muted-2); border-bottom: 1px solid var(--line); display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; }
   .pilar li::before { content: "→"; color: var(--green); font-weight: 700; flex-shrink: 0; }
   .pilar li:last-child { border-bottom: none; }
-  .pilares .closing { margin-top: 48px; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: clamp(20px, 2.6vw, 32px); line-height: 1.25; color: var(--white); max-width: 22ch; }
-  .pilares .closing .accent { color: var(--green); }
+  /* frase de apoio — discreta, sem competir com os pilares */
+  .pilares .closing { margin-top: 44px; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 17px; line-height: 1.55; color: var(--muted-2); max-width: 64ch; margin-left: auto; margin-right: auto; text-align: center; letter-spacing: 0; }
+  .pilares .closing .accent { color: var(--green); font-weight: 600; }
 
   /* ===================== SISTEMA GROVVA SALES ===================== */
   .sistema { background: var(--ink-2); border-top: 1px solid var(--line); }
   .sistema h2 { max-width: 16ch; margin-bottom: 20px; }
-  .blocos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
-  .bloco {
-    padding: 32px 28px; border: 1px solid var(--line); border-radius: 18px;
-    background: var(--ink); transition: border-color 0.3s, transform 0.3s;
+
+  /* --- Widgets do sistema: linhas alternadas (mockup + texto) --- */
+  .widgets { margin-top: 64px; display: flex; flex-direction: column; gap: 56px; }
+  .widget-row { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .widget-row:nth-child(even) .widget-art { order: 2; }
+  .widget-copy h3 { color: var(--white); margin: 0 0 16px; font-size: clamp(24px, 2.4vw, 32px); }
+  .widget-copy h3 .w-num { color: var(--green); font-weight: 800; margin-right: 0.28em; }
+  .widget-copy p { font-size: 16px; color: var(--muted-2); line-height: 1.6; max-width: 42ch; }
+
+  /* moldura de mockup (janela do produto) */
+  .wmock {
+    border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+    background: var(--ink); box-shadow: 0 30px 70px -40px rgba(0,0,0,0.8);
+    transition: border-color 0.3s, transform 0.3s;
   }
-  .bloco:hover { border-color: var(--green); transform: translateY(-4px); }
-  .bloco .b-num { font-family: 'Inter Tight', sans-serif; font-size: 13px; letter-spacing: 0.1em; color: var(--green); font-weight: 700; }
-  .bloco h3 { color: var(--white); margin: 12px 0 14px; font-size: 22px; }
-  .bloco p { font-size: 14px; color: var(--muted-2); line-height: 1.6; }
-  .sistema-cta { margin-top: 48px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .widget-art:hover .wmock { border-color: var(--green); transform: translateY(-4px); }
+  .wmock-bar { display: flex; align-items: center; gap: 6px; padding: 12px 16px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.02); }
+  .wmock-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--ink-3); display: inline-block; }
+  .wmock-bar i:nth-child(1) { background: #FF6B6B66; }
+  .wmock-bar i:nth-child(2) { background: #F5B54466; }
+  .wmock-bar i:nth-child(3) { background: #56C27166; }
+  .wmock-bar span { margin-left: 8px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .wmock-body { padding: 18px; }
+
+  /* Pipeline (kanban) */
+  .kb { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .kb-col { background: var(--ink-2); border: 1px solid var(--line); border-radius: 10px; padding: 10px; }
+  .kb-col .kb-h { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 8px; display: flex; justify-content: space-between; }
+  .kb-card { background: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 9px 10px; margin-bottom: 8px; }
+  .kb-card:last-child { margin-bottom: 0; }
+  .kb-card .t { font-size: 12px; color: var(--white); font-weight: 600; }
+  .kb-card .v { font-size: 12px; color: var(--green); font-weight: 700; margin-top: 4px; font-family: 'Inter Tight', sans-serif; }
+  .kb-card .who { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 10px; color: var(--muted); }
+  .kb-card .who b { width: 16px; height: 16px; border-radius: 50%; background: rgba(86,194,113,0.18); color: var(--green); display: inline-flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 700; }
+
+  /* Automações */
+  .auto-list { display: flex; flex-direction: column; gap: 10px; }
+  .auto-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: var(--ink-2); border: 1px solid var(--line); border-radius: 10px; }
+  .auto-item .ico { width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0; background: rgba(86,194,113,0.14); color: var(--green); display: flex; align-items: center; justify-content: center; font-size: 15px; }
+  .auto-item .tx { flex: 1; font-size: 12.5px; color: var(--muted-2); }
+  .auto-item .tx b { color: var(--white); font-weight: 600; }
+  .auto-item .tag { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: var(--green); border: 1px solid rgba(86,194,113,0.35); border-radius: 100px; padding: 3px 8px; }
+
+  /* Agenda (semana) */
+  .ag { display: grid; grid-template-columns: 34px repeat(5, 1fr); gap: 6px; }
+  .ag .hd { font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 600; text-align: center; padding-bottom: 4px; }
+  .ag .hr { font-size: 9px; color: var(--muted); text-align: right; padding-right: 4px; line-height: 26px; }
+  .ag .cell { height: 26px; background: var(--ink-2); border: 1px solid var(--line); border-radius: 5px; }
+  .ag .cell.ev { background: rgba(86,194,113,0.16); border-color: rgba(86,194,113,0.45); position: relative; }
+  .ag .cell.ev::after { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; border-radius: 2px; background: var(--green); }
+  .ag .cell.warn { background: rgba(245,181,68,0.14); border-color: rgba(245,181,68,0.4); }
+
+  /* Financeiro */
+  .fin-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+  .fin-kpi { background: var(--ink-2); border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; }
+  .fin-kpi .k { font-size: 10px; color: var(--muted); }
+  .fin-kpi .vv { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 16px; margin-top: 5px; letter-spacing: -0.02em; }
+  .fin-kpi .vv.up { color: var(--green); }
+  .fin-kpi .vv.down { color: var(--danger); }
+  .fin-kpi .vv.neutral { color: var(--white); }
+  .fin-chart { display: flex; align-items: flex-end; gap: 8px; height: 76px; padding: 8px 10px; background: var(--ink-2); border: 1px solid var(--line); border-radius: 10px; }
+  .fin-chart .col { flex: 1; border-radius: 4px 4px 0 0; background: linear-gradient(180deg, var(--green), var(--green-deep)); opacity: 0.85; }
+
+  /* Operação (dashboard) */
+  .ops-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .ops-tile { background: var(--ink-2); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .ops-tile .k { font-size: 10px; color: var(--muted); }
+  .ops-tile .vv { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 22px; color: var(--white); letter-spacing: -0.03em; margin-top: 4px; }
+  .ops-tile .vv .accent { color: var(--green); }
+  .ops-spark { height: 44px; display: flex; align-items: flex-end; gap: 4px; padding: 0 2px; }
+  .ops-spark i { flex: 1; background: rgba(86,194,113,0.4); border-radius: 3px 3px 0 0; }
+
+  .sistema-cta { margin-top: 56px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
   .sistema-cta .hint { font-size: 13px; color: var(--muted); max-width: 36ch; }
+  @media (max-width: 760px) {
+    .widget-row { grid-template-columns: 1fr; gap: 24px; }
+    .widget-row:nth-child(even) .widget-art { order: 0; }
+  }
 
   /* ===================== CASES ===================== */
   .cases { background: var(--ink); border-top: 1px solid var(--line); }
@@ -406,8 +497,21 @@
   .case-card {
     margin-top: 48px; border: 1px solid var(--line); border-radius: 24px;
     background: linear-gradient(180deg, rgba(86,194,113,0.06), transparent 50%);
-    padding: 40px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center;
+    padding: 40px; display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 40px; align-items: center;
   }
+  .case-photo {
+    position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--line);
+    background: var(--ink-2); min-height: 320px; align-self: stretch;
+  }
+  .case-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .case-photo .ph {
+    position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; color: var(--muted); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    background: repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0 12px, transparent 12px 24px);
+  }
+  .case-photo .ph svg { opacity: 0.4; }
+  .case-main { display: flex; flex-direction: column; }
+  .case-main .case-nums { margin-top: 24px; }
   .case-tag { display: inline-block; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); border: 1px solid rgba(86,194,113,0.3); padding: 6px 12px; border-radius: 100px; margin-bottom: 20px; }
   .case-card h3 { color: var(--white); margin-bottom: 16px; }
   .case-card .ctx { font-size: 14px; color: var(--muted-2); line-height: 1.6; margin-bottom: 16px; }
@@ -433,7 +537,7 @@
   .week-label { font-family: 'Inter Tight', sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); margin-bottom: 4px; }
   .week h3 { color: var(--white); font-size: 22px; margin-bottom: 16px; }
   .week ul { list-style: none; padding: 0; }
-  .week li { padding: 9px 0; font-size: 13px; color: var(--muted-2); border-bottom: 1px solid var(--line); display: flex; gap: 9px; align-items: flex-start; line-height: 1.45; }
+  .week li { padding: 10px 0; font-size: 15px; color: var(--muted-2); border-bottom: 1px solid var(--line); display: flex; gap: 9px; align-items: flex-start; line-height: 1.5; }
   .week li::before { content: "✓"; color: var(--green); font-weight: 700; flex-shrink: 0; }
   .week li:last-child { border-bottom: none; }
   .semanas .closing { margin-top: 56px; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: clamp(20px, 2.6vw, 32px); line-height: 1.25; color: var(--white); max-width: 24ch; }
@@ -662,7 +766,7 @@
       </div>
     </div>
 
-    <p class="closing">Não é só marketing. Não é só vendas. É a <span class="accent">estrutura completa</span> que transforma sua clínica num negócio previsível e escalável.</p>
+    <p class="closing">Não é só marketing, não é só vendas, é a <span class="accent">estrutura completa</span> que profissionaliza e transforma sua clínica num negócio previsível e escalável.</p>
   </div>
 </section>
 
@@ -673,22 +777,133 @@
     <h2>Conheça o <span class="accent">Grovva Sales</span> por dentro</h2>
     <p class="lead">O sistema feito sob medida para clínicas que querem organizar, vender mais e crescer com controle.</p>
 
-    <div class="blocos">
-      <div class="bloco">
-        <div class="b-num">01</div>
-        <h3>Pipeline Comercial</h3>
-        <p>Visualize em tempo real todas as oportunidades da sua clínica, em qual etapa cada paciente está, quanto está sendo gerado e quem é responsável por cada atendimento.</p>
+    <div class="widgets">
+
+      <!-- Widget 1 — Pipeline comercial -->
+      <div class="widget-row">
+        <div class="widget-art">
+          <div class="wmock">
+            <div class="wmock-bar"><i></i><i></i><i></i><span>Pipeline</span></div>
+            <div class="wmock-body">
+              <div class="kb">
+                <div class="kb-col">
+                  <div class="kb-h"><span>Novo lead</span><span>3</span></div>
+                  <div class="kb-card"><div class="t">Harmonização</div><div class="v">R$ 2.400</div><div class="who"><b>MA</b> Marina</div></div>
+                  <div class="kb-card"><div class="t">Botox</div><div class="v">R$ 1.200</div><div class="who"><b>LU</b> Lucas</div></div>
+                </div>
+                <div class="kb-col">
+                  <div class="kb-h"><span>Avaliação</span><span>2</span></div>
+                  <div class="kb-card"><div class="t">Preenchimento</div><div class="v">R$ 1.800</div><div class="who"><b>MA</b> Marina</div></div>
+                </div>
+                <div class="kb-col">
+                  <div class="kb-h"><span>Fechado</span><span>5</span></div>
+                  <div class="kb-card"><div class="t">Bioestimulador</div><div class="v">R$ 3.200</div><div class="who"><b>LU</b> Lucas</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="widget-copy">
+          <h3><span class="w-num">01</span>Pipeline comercial</h3>
+          <p>Organize e monitore toda a jornada do lead até virar cliente e tenha controle real das oportunidades de venda que passam pelo seu negócio.</p>
+        </div>
       </div>
-      <div class="bloco">
-        <div class="b-num">02</div>
-        <h3>Agenda Integrada</h3>
-        <p>Agendamentos, confirmações e lembretes automáticos. Sua agenda organizada sem depender de caderno, WhatsApp ou planilha.</p>
+
+      <!-- Widget 2 — Automações -->
+      <div class="widget-row">
+        <div class="widget-art">
+          <div class="wmock">
+            <div class="wmock-bar"><i></i><i></i><i></i><span>Automações</span></div>
+            <div class="wmock-body">
+              <div class="auto-list">
+                <div class="auto-item"><span class="ico">↩</span><span class="tx"><b>Follow-up</b> enviado para 12 leads sem resposta</span><span class="tag">Auto</span></div>
+                <div class="auto-item"><span class="ico">📅</span><span class="tx"><b>Agenda confirmada</b> com lembrete automático</span><span class="tag">Auto</span></div>
+                <div class="auto-item"><span class="ico">🔄</span><span class="tx"><b>Lead reativado</b> após 7 dias parado</span><span class="tag">Auto</span></div>
+                <div class="auto-item"><span class="ico">💸</span><span class="tx"><b>Cobrança gerada</b> e enviada ao paciente</span><span class="tag">Auto</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="widget-copy">
+          <h3><span class="w-num">02</span>O sistema trabalha enquanto<br>seu time vende</h3>
+          <p>Follow-ups, agendas, recuperação de leads e cobranças acontecem de forma automática.</p>
+        </div>
       </div>
-      <div class="bloco">
-        <div class="b-num">03</div>
-        <h3>Financeiro e Produtividade</h3>
-        <p>Acompanhe o faturamento, os procedimentos que mais geram retorno e a produtividade da sua equipe, tudo num único painel.</p>
+
+      <!-- Widget 3 — Agenda integrada -->
+      <div class="widget-row">
+        <div class="widget-art">
+          <div class="wmock">
+            <div class="wmock-bar"><i></i><i></i><i></i><span>Agenda</span></div>
+            <div class="wmock-body">
+              <div class="ag">
+                <div class="hd"></div><div class="hd">Seg</div><div class="hd">Ter</div><div class="hd">Qua</div><div class="hd">Qui</div><div class="hd">Sex</div>
+                <div class="hr">09h</div><div class="cell ev"></div><div class="cell"></div><div class="cell ev"></div><div class="cell"></div><div class="cell ev"></div>
+                <div class="hr">10h</div><div class="cell"></div><div class="cell ev"></div><div class="cell ev"></div><div class="cell"></div><div class="cell"></div>
+                <div class="hr">11h</div><div class="cell ev"></div><div class="cell ev"></div><div class="cell"></div><div class="cell warn"></div><div class="cell ev"></div>
+                <div class="hr">14h</div><div class="cell"></div><div class="cell ev"></div><div class="cell"></div><div class="cell ev"></div><div class="cell ev"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="widget-copy">
+          <h3><span class="w-num">03</span>Agenda integrada</h3>
+          <p>Sua agenda integrada ao Grovva Sales para um controle mais efetivo de cada horário do seu dia.</p>
+        </div>
       </div>
+
+      <!-- Widget 4 — Gestão financeira -->
+      <div class="widget-row">
+        <div class="widget-art">
+          <div class="wmock">
+            <div class="wmock-bar"><i></i><i></i><i></i><span>Financeiro</span></div>
+            <div class="wmock-body">
+              <div class="fin-kpis">
+                <div class="fin-kpi"><div class="k">Saldo</div><div class="vv neutral">R$ 184k</div></div>
+                <div class="fin-kpi"><div class="k">A receber</div><div class="vv up">R$ 62k</div></div>
+                <div class="fin-kpi"><div class="k">A pagar</div><div class="vv down">R$ 21k</div></div>
+              </div>
+              <div class="fin-chart">
+                <div class="col" style="height:42%"></div>
+                <div class="col" style="height:58%"></div>
+                <div class="col" style="height:50%"></div>
+                <div class="col" style="height:74%"></div>
+                <div class="col" style="height:66%"></div>
+                <div class="col" style="height:92%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="widget-copy">
+          <h3><span class="w-num">04</span>Gestão financeira</h3>
+          <p>Monitore entradas, despesas, pagamentos em aberto e cobranças, tudo no mesmo ambiente.</p>
+        </div>
+      </div>
+
+      <!-- Widget 5 — Controle da operação -->
+      <div class="widget-row">
+        <div class="widget-art">
+          <div class="wmock">
+            <div class="wmock-bar"><i></i><i></i><i></i><span>Visão geral</span></div>
+            <div class="wmock-body">
+              <div class="ops-grid">
+                <div class="ops-tile"><div class="k">Leads no mês</div><div class="vv">+<span class="accent">128</span></div></div>
+                <div class="ops-tile"><div class="k">Taxa de conversão</div><div class="vv">32<span class="accent">%</span></div></div>
+                <div class="ops-tile"><div class="k">Faturamento</div><div class="vv">R$ <span class="accent">96k</span></div></div>
+                <div class="ops-tile"><div class="k">Agendamentos</div><div class="vv">74</div></div>
+              </div>
+              <div class="ops-spark">
+                <i style="height:35%"></i><i style="height:55%"></i><i style="height:45%"></i><i style="height:70%"></i><i style="height:60%"></i><i style="height:85%"></i><i style="height:72%"></i><i style="height:100%"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="widget-copy">
+          <h3><span class="w-num">05</span>Controle da sua operação</h3>
+          <p>Acompanhe produtividade, metas e os números que realmente importam da sua clínica num só painel.</p>
+        </div>
+      </div>
+
     </div>
 
     <div class="sistema-cta">
@@ -708,17 +923,26 @@
     <p class="lead">Essa é uma clínica que estava exatamente onde você está hoje.</p>
 
     <div class="case-card">
-      <div>
-        <span class="case-tag">📍 Fisioterapia e Estética — Parceiro Grovva</span>
-        <h3>Nova Clin Fisio</h3>
-        <p class="ctx"><strong>Contexto:</strong> dependia 100% de indicação para atrair novos pacientes. Sem previsibilidade, sem processo comercial e sem controle do que entrava todo mês.</p>
-        <p class="ctx"><strong>O que mudou:</strong> ao iniciar a assessoria de vendas da Grovva, a clínica dobrou o número de avaliações já no primeiro mês. Com estrutura de marketing, processo comercial e sistema integrado, o crescimento deixou de depender de sorte.</p>
+      <div class="case-photo">
+        <img src="../images/cases/nova-clin.jpg" alt="Nova Clin Fisio" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="ph" style="display:none">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.5-3.5a2 2 0 0 0-2.8 0L6 21"/></svg>
+          <span>Foto da Nova Clin</span>
+        </div>
       </div>
-      <div class="case-nums">
-        <div class="case-num"><div class="n"><span data-count="2">0</span>x</div><div class="l">Avaliações no 1º mês</div></div>
-        <div class="case-num"><div class="n">+<span data-count="4000" data-sep="1">0</span></div><div class="l">Pacientes gerados</div></div>
-        <div class="case-num"><div class="n">+R$<span data-count="300">0</span>K</div><div class="l">Em receita gerada</div></div>
-        <div class="case-num"><div class="n"><span data-count="3">0</span> anos</div><div class="l">De parceria contínua</div></div>
+      <div class="case-main">
+        <div>
+          <span class="case-tag">📍 Fisioterapia e Estética — Parceiro Grovva</span>
+          <h3>Nova Clin Fisio</h3>
+          <p class="ctx"><strong>Contexto:</strong> dependia 100% de indicação para atrair novos pacientes. Sem previsibilidade, sem processo comercial e sem controle do que entrava todo mês.</p>
+          <p class="ctx"><strong>O que mudou:</strong> ao iniciar a assessoria de vendas da Grovva, a clínica dobrou o número de avaliações já no primeiro mês. Com estrutura de marketing, processo comercial e sistema integrado, o crescimento deixou de depender de sorte.</p>
+        </div>
+        <div class="case-nums">
+          <div class="case-num"><div class="n"><span data-count="2">0</span>x</div><div class="l">Avaliações no 1º mês</div></div>
+          <div class="case-num"><div class="n">+<span data-count="4000" data-sep="1">0</span></div><div class="l">Pacientes gerados</div></div>
+          <div class="case-num"><div class="n">+R$<span data-count="300">0</span>K</div><div class="l">Em receita gerada</div></div>
+          <div class="case-num"><div class="n"><span data-count="3">0</span> anos</div><div class="l">De parceria contínua</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -740,7 +964,7 @@
           <div class="week-label">Semana 1</div>
           <h3>Fundação</h3>
           <ul>
-            <li>Reunião de Kickoff — acessos, alinhamentos e coleta de informações base</li>
+            <li>Reunião de Kickoff: acessos, alinhamentos e coleta de informações base</li>
             <li>Definição do ICP e das metas da clínica</li>
             <li>Desenvolvimento da oferta</li>
             <li>Desenvolvimento do seu ambiente Grovva Sales</li>
@@ -782,8 +1006,6 @@
         </div>
       </div>
     </div>
-
-    <p class="closing">Você não começa sozinha. Do primeiro dia, tem um <span class="accent">time inteiro</span> trabalhando pela sua clínica.</p>
   </div>
 </section>
 
@@ -827,7 +1049,6 @@
       </div>
     </div>
 
-    <p class="closing">Menos do que o salário de um vendedor. Com resultado de um <span class="accent">time completo</span>.</p>
     <div class="scale-cta">
       <button class="cta" data-scroll-to="hero">Vamos começar a virada da sua clínica
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg>
@@ -1053,7 +1274,7 @@
 
     // Reveal de conteúdo de apoio
     document.querySelectorAll('section:not(.hero)').forEach((section) => {
-      const items = section.querySelectorAll('.section-tag, p.lead, .bignum, .logos-wrap, .socios-wrap, .quiz, .bloco, .case-card, .closing, .anchor, .price-card, .scale-cta');
+      const items = section.querySelectorAll('.section-tag, p.lead, .bignum, .quiz, .widget-row, .case-card, .closing, .anchor, .price-card, .scale-cta');
       if (!items.length) return;
       gsap.set(items, { y: 40, opacity: 0 });
       ScrollTrigger.create({
