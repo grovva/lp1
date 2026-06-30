@@ -588,6 +588,8 @@ function Final({ whatsappUrl }: { whatsappUrl: string }) {
         className="mx-auto mt-6 w-full max-w-[480px] object-cover"
       />
 
+      <p className="mt-3 text-center text-[24px] leading-none" aria-hidden="true">👇👇👇</p>
+
       <Link
         href={whatsappUrl}
         target="_blank"
