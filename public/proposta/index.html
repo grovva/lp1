@@ -553,6 +553,13 @@
   .anchor-row .val { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 15px; color: var(--white); white-space: nowrap; }
   .anchor-row.head { background: var(--ink-2); }
   .anchor-row.head .item, .anchor-row.head .val { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  /* serviços riscados (já inclusos no Grovva Scale) */
+  .anchor-row.cut .item, .anchor-row.cut .val {
+    text-decoration: line-through;
+    text-decoration-color: var(--danger);
+    text-decoration-thickness: 2px;
+    color: var(--muted);
+  }
   .anchor-row.total { background: rgba(255,107,107,0.06); }
   .anchor-row.total .item { color: var(--white); font-weight: 600; }
   .anchor-row.total .val { color: var(--danger); font-size: 20px; }
@@ -1093,10 +1100,10 @@
       <div class="anchor">
         <div class="anchor-row head"><span class="item">O que</span><span class="val">Valor de mercado</span></div>
         <div class="anchor-row"><span class="item">Gestão de tráfego pago</span><span class="val">R$1.500/mês</span></div>
-        <div class="anchor-row"><span class="item">CRM + automações</span><span class="val">R$800/mês</span></div>
-        <div class="anchor-row"><span class="item">Consultoria de vendas</span><span class="val">R$2.000/mês</span></div>
-        <div class="anchor-row"><span class="item">Treinamento de equipe</span><span class="val">R$1.500/mês</span></div>
-        <div class="anchor-row"><span class="item">Playbook de vendas</span><span class="val">R$2.000 único</span></div>
+        <div class="anchor-row cut"><span class="item">CRM + automações</span><span class="val">R$800/mês</span></div>
+        <div class="anchor-row cut"><span class="item">Consultoria de vendas</span><span class="val">R$2.000/mês</span></div>
+        <div class="anchor-row cut"><span class="item">Treinamento de equipe</span><span class="val">R$1.500/mês</span></div>
+        <div class="anchor-row cut"><span class="item">Playbook de vendas</span><span class="val">R$2.000 único</span></div>
         <div class="anchor-row total"><span class="item">Total se contratasse separado</span><span class="val">+R$7.800/mês</span></div>
       </div>
 
