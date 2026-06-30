@@ -1276,25 +1276,31 @@
   //  SCROLL SYSTEM — Lenis + GSAP + ScrollTrigger (mesma base do kickoff)
   // =====================================================================
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const lenis = new Lenis({
-    duration: 1.4,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true, smoothTouch: false, touchMultiplier: 1.5, wheelMultiplier: 1,
-  });
-  function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
+  // Em touch o Lenis trava o scroll (mantém overflow:clip e não repassa o
+  // gesto), então o smooth scroll fica só no desktop; no mobile é nativo.
+  const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches || ('ontouchstart' in window);
 
   gsap.registerPlugin(ScrollTrigger);
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((time) => lenis.raf(time * 1000));
-  gsap.ticker.lagSmoothing(0);
 
-  // CTA / âncoras de scroll
+  let lenis = null;
+  if (!isTouch && !reducedMotion && window.Lenis) {
+    lenis = new Lenis({
+      duration: 1.4,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true, smoothTouch: false, touchMultiplier: 1.5, wheelMultiplier: 1,
+    });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  // CTA / âncoras de scroll (Lenis no desktop, nativo no mobile)
   document.querySelectorAll('[data-scroll-to]').forEach((el) => {
     el.addEventListener('click', () => {
       const target = document.getElementById(el.dataset.scrollTo);
-      if (target) lenis.scrollTo(target, { offset: 0, duration: 1.6 });
+      if (!target) return;
+      if (lenis) lenis.scrollTo(target, { offset: 0, duration: 1.6 });
+      else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 
