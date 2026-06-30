@@ -435,6 +435,9 @@
   .wmock-bar i:nth-child(3) { background: #56C27166; }
   .wmock-bar span { margin-left: 8px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
   .wmock-body { padding: 18px; }
+  /* impede que os mockups estourem a largura (min-content) no mobile */
+  .widget-row > *, .wmock, .wmock-body, .kb, .kb-col, .auto-item .tx, .ops-grid, .fin-kpis { min-width: 0; }
+  .kb-card .t, .auto-item .tx { overflow-wrap: break-word; hyphens: auto; }
 
   /* Pipeline (kanban) */
   .kb { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
@@ -486,10 +489,6 @@
 
   .sistema-cta { margin-top: 56px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
   .sistema-cta .hint { font-size: 13px; color: var(--muted); max-width: 36ch; }
-  @media (max-width: 760px) {
-    .widget-row { grid-template-columns: 1fr; gap: 24px; }
-    .widget-row:nth-child(even) .widget-art { order: 0; }
-  }
 
   /* ===================== CASES ===================== */
   .cases { background: var(--ink); border-top: 1px solid var(--line); }
@@ -612,18 +611,93 @@
   /* ===================== RESPONSIVO ===================== */
   @media (max-width: 1024px) {
     section { padding: 100px 32px 64px; }
-    .bignum-grid, .blocos, .weeks { grid-template-columns: 1fr 1fr; }
+    .bignum-grid, .weeks { grid-template-columns: 1fr 1fr; }
     .pilar-grid { grid-template-columns: 1fr; }
     .case-card, .scale-grid { grid-template-columns: 1fr; }
     .timeline-track-bg, .timeline-track, .week .marker { display: none; }
     .week { padding-top: 0; }
+    .widget-row { gap: 36px; }
   }
-  @media (max-width: 680px) {
-    section { padding: 96px 20px 56px; }
-    .bignum-grid, .blocos, .weeks, .case-nums { grid-template-columns: 1fr; }
-    .quiz { padding: 28px 22px; }
+  @media (max-width: 760px) {
+    section { padding: 92px 20px 56px; }
+    .nav { padding: 14px 20px; }
+    .nav.scrolled { padding: 10px 20px; }
+
+    /* Hero */
+    .hero h1 { font-size: clamp(32px, 8.5vw, 44px); max-width: 100%; }
+    .hero .logo-mark { margin-bottom: 32px; }
+    .hero .logo-mark img { height: 44px; }
+    .hero p.lead { font-size: 17px; }
+    .cta { padding: 16px 24px; font-size: 15px; }
+
+    /* tipografia base */
+    h2 { font-size: clamp(30px, 8vw, 40px); }
+    p.lead { font-size: 17px; }
+    .section-tag { margin-bottom: 18px; }
+    section h2 + p { margin-top: 22px; }
+
+    /* Quem é a Grovva */
+    .bignum-grid, .weeks, .case-nums { grid-template-columns: 1fr; }
+    .bignum-grid { gap: 16px; margin-top: 36px; }
+    .bignum { padding: 28px 24px; }
+    .bignum .label { font-size: 16px; }
+
+    /* Quiz */
+    .quiz { padding: 24px 18px; margin-top: 32px; }
     .q-legend { display: none; }
+    .q-opt { padding: 15px 16px; font-size: 14px; }
+
+    /* Pilares */
+    .pilar { padding: 28px 24px; }
+    .pilar li { font-size: 15px; }
+    .pilares .closing { margin-top: 32px; font-size: 16px; }
+
+    /* Sistema / widgets */
+    .widgets { gap: 40px; margin-top: 44px; }
+    .widget-row { grid-template-columns: 1fr; gap: 20px; }
+    .widget-row:nth-child(even) .widget-art { order: 0; }
+    .widget-copy h3 { font-size: 24px; }
+    .widget-copy h3 br { display: none; }
+    .widget-copy p { font-size: 15px; max-width: 100%; }
+    .wmock-body { padding: 14px; }
+    .kb { gap: 8px; }
+    .kb-col { padding: 8px; }
+    .kb-card { padding: 8px 9px; }
+    .sistema-cta { margin-top: 40px; }
+
+    /* Cases */
+    .case-card { padding: 24px; gap: 24px; }
+    .case-photo { min-height: 240px; }
+    .case-main .case-nums { grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+    .case-num { padding: 18px; }
+
+    /* Semanas */
+    .timeline { margin-top: 36px; }
+    .weeks { gap: 28px; }
+
+    /* Scale */
+    .scale h2 { text-align: left; margin-bottom: 28px; }
+    .scale-grid { gap: 28px; }
+    .anchor-row { padding: 13px 16px; gap: 10px; }
+    .anchor-row .item { font-size: 13px; }
+    .anchor-row .val { font-size: 14px; }
+    .price-transition { margin-bottom: 18px; }
+    .price-trigger { padding: 26px 22px; text-align: left; }
     .price-box, .scale h2 { text-align: left; }
+    .price-box { padding: 28px 22px; }
+    .scale-cta .cta { width: 100%; justify-content: center; }
+  }
+  @media (max-width: 430px) {
+    .hero h1 { font-size: 30px; }
+    h2 { font-size: 27px; }
+    .bignum .num { font-size: 40px; }
+    .kb-card .t { font-size: 11px; }
+    .kb-card .v { font-size: 11px; }
+    .kb-card .who { font-size: 9px; }
+    .kb-col .kb-h { font-size: 9px; }
+    .case-main .case-nums { grid-template-columns: 1fr; }
+    .anchor-row .item { font-size: 12px; }
+    .price-value { font-size: clamp(40px, 12vw, 56px); }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
@@ -825,7 +899,7 @@
           </div>
         </div>
         <div class="widget-copy">
-          <h3><span class="w-num">02</span>O sistema trabalha enquanto<br>seu time vende</h3>
+          <h3><span class="w-num">02</span>O sistema trabalha enquanto <br>seu time vende</h3>
           <p>Follow-ups, agendas, recuperação de leads e cobranças acontecem de forma automática.</p>
         </div>
       </div>
